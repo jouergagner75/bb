@@ -1,17 +1,25 @@
-## Creating the JSON schemas specification
+# Explore atm-location-specification project
 
-Open and analyze the file *locations-get-response.json* located at: *main/resources/examples* .
+Complete the atm-location-specification project following the instructions below.
 
-Based on the *locations-get-response.json*, create the following JSON schema inside *main/resources/schemas*:
+## Instructions
+
+### Step 1: Creating the JSON schemas specification
+
+Open and analyze the file ***locations-get-response.json*** located at: ***main/resources/examples***
+
+Based on the ***locations-get-response.json***, create the following JSON schema inside ***main/resources/schemas***:
 
 * address.json
 
-Pay extra attention to the properties created inside these files: they should match the properties described by the JSON in the file *locations-get-response.json* .
+Pay extra attention to the properties created inside these files: they should match the properties described by the JSON in the file ***locations-get-response.json***
 
-Once you've finished, run the following command inside the *atm-location-specification* root:
+### Step 2: Build project
 
-``` mvn clean install ```
+Once you've finished, run the following command inside the ***atm-location-specification*** root:
 
-Explore the target folder created, can you tell what is the REST endpoint generated?
+	mvn clean install
 
-Proceed to the README.md file located at [atm-location-service/README.md](../atm-location-service/README.md)
+Explore the ***target*** folder created, can you tell what is the REST endpoint generated?
+
+Proceed to the **README.md** file located at [atm-location-service](../atm-location-service/README.md)
