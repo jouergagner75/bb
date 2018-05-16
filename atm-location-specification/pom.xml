@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -11,8 +10,8 @@
 
     <groupId>com.backbase</groupId>
     <artifactId>atm-location-specification</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>Backbase :: Digital Banking Services :: atm-location-specification</name>
+    <version>1.0-SNAPSHOT</version>
+    <name>Backbase :: Digital Banking Services :: ATM Location Specification</name>
 
     <properties>
         <codegen.serviceName>location</codegen.serviceName>
@@ -20,12 +19,6 @@
 
     <build>
         <plugins>
-            <!-- Uncomment this if your API is creating Commands and Events
-            <plugin>
-                <groupId>com.backbase.codegen</groupId>
-                <artifactId>jsonschema-events-maven-plugin</artifactId>
-            </plugin>
-             -->
             <plugin>
                 <groupId>com.backbase.codegen</groupId>
                 <artifactId>raml-api-maven-plugin-1-0</artifactId>

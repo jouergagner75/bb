@@ -26,11 +26,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author luca
+ * @author Erkin Pehlivan
  * @version 1.0
- * @since 07/11/2017
- * <p>
- * Imagination is more important than knowledge. @AE
+ * @since 16/05/2018
+ *
  */
 // TODO 6 : make class as a RestController Spring Bean
 public class AtmLocationsRestController implements LocationsApi {
@@ -39,7 +38,7 @@ public class AtmLocationsRestController implements LocationsApi {
     private final AtmLocationsTransformer atmLocationsTransformer;
 
     @Autowired
-    public AtmLocationsRestController(ATMApi atmApi, AtmLocationsTransformer atmLocationsTransformer) {
+    public AtmLocationsController(ATMApi atmApi, AtmLocationsTransformer atmLocationsTransformer) {
         this.atmApi = atmApi;
         this.atmLocationsTransformer = atmLocationsTransformer;
     }

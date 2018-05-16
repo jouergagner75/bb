@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * <p>
  * Imagination is more important than knowledge. @AE
  */
-//TODO 8 (optional) : make class as a RestController Spring Bean and remove @RestController annotation from AtmLocationsRestController class
+// TODO 8 (optional) :  make class as a RestController Spring Bean and remove @RestController annotation from AtmLocationsRestController class
 public class AtmLocationsController implements LocationsApi {
 
     @EndpointInject(uri = AtmLocationsRoute.DIRECT_GET)
