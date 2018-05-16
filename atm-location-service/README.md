@@ -16,7 +16,7 @@ The project is already structured with a few missing parts.
 
 ### Step 2: Include specification dependency
 
-Follow the TODOs in ***atm-location-service/pom.xml*** file.
+Follow the TODO in ***atm-location-service/pom.xml*** file.
 
 ### Step 3: Make the service accessible
 
@@ -34,17 +34,13 @@ To get the data from Open Bank API you should complete RestTemplate class.
 
 Follow the TODOs inside ***com.backbase.Application*** and ***com.backbase.atms.AtmLocationsRestController*** classes.
 
-### Step 6: (Optional) Call external service using Apache Camel
-
-You can **optionally** follow the TODOs inside ***com.backbase.atms.AtmLocationsRoute*** and ***com.backbase.atms.AtmLocationsController*** to complete the Camel route.
-
-### Step 7: Run the service
+### Step 6: Run the service
 
 Run the following command inside the ***atm-location-service*** root:
 
 	mvn spring-boot:run
 
-### Step 8: Test the service
+### Step 7: Test the service
 
 First, let's check if our service instance appears available in the Registry:
 
@@ -64,3 +60,6 @@ Hit the service
 
 [http://localhost:8080/gateway/api/atm-location-service/v1/locations](http://localhost:8080/gateway/api/atm-location-service/v1/locations)
 
+### Step 8: (Optional) Call external service using Apache Camel
+
+You can **optionally** follow the TODOs inside ***com.backbase.atms.AtmLocationsRoute*** and ***com.backbase.atms.AtmLocationsController*** to complete the Camel route.
