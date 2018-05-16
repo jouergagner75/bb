@@ -39,7 +39,7 @@ public class AtmLocationsRestController implements LocationsApi {
     private final AtmLocationsTransformer atmLocationsTransformer;
 
     @Autowired
-    public AtmLocationsController(ATMApi atmApi, AtmLocationsTransformer atmLocationsTransformer) {
+    public AtmLocationsRestController(ATMApi atmApi, AtmLocationsTransformer atmLocationsTransformer) {
         this.atmApi = atmApi;
         this.atmLocationsTransformer = atmLocationsTransformer;
     }

@@ -10,7 +10,7 @@
         <relativePath />
     </parent>
 
-    <groupId>com.backbase.training</groupId>
+    <groupId>com.backbase</groupId>
     <artifactId>atm-location-service</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>

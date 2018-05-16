@@ -52,7 +52,7 @@ Log in through the authentication service
 
 [http://localhost:8080/gateway/api/auth/login](http://localhost:8080/gateway/api/auth/login)
 
-Now check that your service has the attribute `public: true`:
+Now check that your service has the attribute `public: true`
 
 [http://localhost:8080/gateway/api_gw/routes](http://localhost:8080/gateway/api_gw/routes)
 
