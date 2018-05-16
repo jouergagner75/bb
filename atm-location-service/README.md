@@ -18,29 +18,33 @@ The project is already structured with a few missing parts.
 
 Follow the TODOs in ***atm-location-service/pom.xml*** file.
 
-### Step 3: Include annotations
+### Step 3: Make the service accessible
+
+Use correct property to make the service available through the Edge Service in application.yml
+
+### Step 4: Include annotations
 
 You should use annotations for auto scanning the package, internal JWT consumer and to register in the Registry. 
 
 Follow the TODOs inside ***com.backbase.Application*** class.
 
-### Step 4: Call external service
+### Step 5: Call external service
 
 To get the data from Open Bank API you should complete RestTemplate class.
 
-Follow the TODOs inside ***com.backbase.Application*** and ***com.backbase.atms.AtmLocationsController*** classes.
+Follow the TODOs inside ***com.backbase.Application*** and ***com.backbase.atms.AtmLocationsRestController*** classes.
 
-### Step 5: (Optional) Call external service using Apache Camel
+### Step 6: (Optional) Call external service using Apache Camel
 
-You can optionally follow the TODOs inside ***com.backbase.atms.AtmLocationsRoute*** to complete the Camel route.
+You can **optionally** follow the TODOs inside ***com.backbase.atms.AtmLocationsRoute*** and ***com.backbase.atms.AtmLocationsController*** to complete the Camel route.
 
-### Step 6: Run the service
+### Step 7: Run the service
 
 Run the following command inside the ***atm-location-service*** root:
 
 	mvn spring-boot:run
 
-### Step 7: Test the service
+### Step 8: Test the service
 
 First, let's check if our service instance appears available in the Registry:
 

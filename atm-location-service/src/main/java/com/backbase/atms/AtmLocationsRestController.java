@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  */
 // TODO 6 : make class as a RestController Spring Bean
 public class AtmLocationsRestController implements LocationsApi {
-    private final Logger LOGGER = LoggerFactory.getLogger(AtmLocationsController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(AtmLocationsRestController.class);
     private final ATMApi atmApi;
     private final AtmLocationsTransformer atmLocationsTransformer;
 
