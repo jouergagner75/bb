@@ -14,7 +14,7 @@ import static org.apache.camel.language.spel.SpelExpression.spel;
  *
  * Camel route to call OpenBank API and transform the response
  */
-// TODO 9 (optional) : make class Spring bean
+//@Component
 public class AtmLocationsRoute extends RouteBuilder {
 
     public static final String DIRECT_GET = "direct:/atms/get";
@@ -33,12 +33,12 @@ public class AtmLocationsRoute extends RouteBuilder {
     public void configure() throws Exception {
         from(DIRECT_GET)
                 .routeId("com.backbase.sample.atms.get")
-                //TODO 10 (optional) : invoke the method atmsGet from the ATMApi (using the bean() method from camel)
+                //.bean(atmApi, "atmsGet")
                 .setBody(spel("#{body.data[0].brand[0].ATM}"))
                 .log(LoggingLevel.INFO, "${body.size} ATM locations retrieved")
                 // This call will transform each element in parallel
                 .split(body(), new GroupedBodyAggregationStrategy()).parallelProcessing()
-                //TODO 11 (optional) : call the atmLocationsTransformer and execute the method transformAtmToLocation passing the ${body} as parameter (also using bean() from camel)
+                //.bean(atmLocationsTransformer, "transformAtmToLocation(${body})")
                 .end()
                 // Wrap the list of Locations into a response wrapper
                 .setBody(spel("#{new com.backbase.location.rest.spec.v1.locations.LocationsGetResponseBody().withLocations(body)}"));

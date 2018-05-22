@@ -1,13 +1,15 @@
 package com.backbase;
 
+import com.backbase.buildingblocks.backend.configuration.autoconfigure.BackbaseApplication;
+import com.backbase.buildingblocks.jwt.internal.config.EnableInternalJwtConsumer;
+import com.backbase.buildingblocks.registry.client.api.EnableRegistryClient;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 
-// TODO 3: Use the annotation created by Backbase to run the application and scan the com.backbase packages
-//       : Look for the documentation https://community.backbase.com/documentation/ServiceSDK/latest/service_sdk_ref_configuration
-// TODO 4: Enable the Internal JWT Consumer
-// TODO 5: Enable registration of the service on the Registry
+@BackbaseApplication
+@EnableInternalJwtConsumer
+@EnableRegistryClient
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String... args) {

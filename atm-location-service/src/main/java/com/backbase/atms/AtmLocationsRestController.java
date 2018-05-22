@@ -31,18 +31,17 @@ import java.util.stream.Collectors;
  * @since 16/05/2018
  *
  */
-// TODO 6 : make class as a RestController Spring Bean
+@RestController
 public class AtmLocationsRestController implements LocationsApi {
     private final Logger LOGGER = LoggerFactory.getLogger(AtmLocationsRestController.class);
     private final ATMApi atmApi;
     private final AtmLocationsTransformer atmLocationsTransformer;
 
     @Autowired
-    public AtmLocationsController(ATMApi atmApi, AtmLocationsTransformer atmLocationsTransformer) {
+    public AtmLocationsRestController(ATMApi atmApi, AtmLocationsTransformer atmLocationsTransformer) {
         this.atmApi = atmApi;
         this.atmLocationsTransformer = atmLocationsTransformer;
     }
-
 
     @Override
     public LocationsGetResponseBody getLocations(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) {
@@ -66,7 +65,7 @@ public class AtmLocationsRestController implements LocationsApi {
     private String executeRequest() throws IOException {
         try {
             String url = atmApi.getApiClient().getBasePath() + "/atms";
-//            TODO 7 : return the body of the response using RestTemplate
+            return new RestTemplate().getForEntity(url, String.class).getBody();
         } catch (Exception e) {
             LOGGER.info("Looks like the server is down, getting the JSON from the file");
             return new String(Files.readAllBytes(Paths.get("../extras/atms.json")));
