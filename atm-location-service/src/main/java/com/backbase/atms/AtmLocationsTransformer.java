@@ -25,7 +25,7 @@ public class AtmLocationsTransformer {
      * @param atm the ATM object from the Open Bank API
      * @return the transformed object
      */
-    public Location transformAtmToLocation(InlineResponse200ATM atm) {
+    public static Location transformAtmToLocation(InlineResponse200ATM atm) {
         Location location = new Location();
         location.setId(atm.getIdentification());
         location.setName(atm.getLocation().getSite().getName());
@@ -51,11 +51,11 @@ public class AtmLocationsTransformer {
         return location;
     }
 
-    private PostalAddress getPostalAddress(InlineResponse200ATM atm) {
+    private static  PostalAddress getPostalAddress(InlineResponse200ATM atm) {
         return atm.getLocation().getPostalAddress();
     }
 
-    private GeographicCoordinates getGeographicCoordinates(InlineResponse200ATM atm) {
+    private static GeographicCoordinates getGeographicCoordinates(InlineResponse200ATM atm) {
         return getPostalAddress(atm).getGeoLocation().getGeographicCoordinates();
     }
 

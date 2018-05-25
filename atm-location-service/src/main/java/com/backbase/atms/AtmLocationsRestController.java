@@ -2,6 +2,7 @@ package com.backbase.atms;
 
 import com.backbase.buildingblocks.logging.api.Logger;
 import com.backbase.buildingblocks.logging.api.LoggerFactory;
+
 import com.backbase.location.rest.spec.v1.locations.Location;
 import com.backbase.location.rest.spec.v1.locations.LocationsApi;
 import com.backbase.location.rest.spec.v1.locations.LocationsGetResponseBody;
@@ -10,9 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openbankproject.api.model.InlineResponse200ATM;
 import com.openbankproject.api.model.InlineResponse200Data;
 import com.openbankproject.api.spec.ATMApi;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,12 +37,10 @@ import java.util.stream.Collectors;
 public class AtmLocationsRestController implements LocationsApi {
     private final Logger LOGGER = LoggerFactory.getLogger(AtmLocationsRestController.class);
     private final ATMApi atmApi;
-    private final AtmLocationsTransformer atmLocationsTransformer;
 
     @Autowired
-    public AtmLocationsRestController(ATMApi atmApi, AtmLocationsTransformer atmLocationsTransformer) {
+    public AtmLocationsRestController(ATMApi atmApi) {
         this.atmApi = atmApi;
-        this.atmLocationsTransformer = atmLocationsTransformer;
     }
 
     @Override
@@ -73,8 +73,7 @@ public class AtmLocationsRestController implements LocationsApi {
     }
 
     private List<Location> transformJsonToLocation(List<InlineResponse200ATM> atms) {
-        return atms.stream()
-                .map(atmLocationsTransformer::transformAtmToLocation)
-                .collect(Collectors.toList());
+        return atms.stream().map(AtmLocationsTransformer::transformAtmToLocation).collect(Collectors.toList());
+
     }
 }
