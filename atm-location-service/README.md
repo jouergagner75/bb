@@ -66,7 +66,7 @@ You can **optionally** follow the TODOs inside ***com.backbase.atms.AtmLocations
 
 ### Step 9: Integration with a real widget
 
-1. Go to the `direct-integration/cxs-be-direct-integration/extras`     
+1. Go to the `../cxs-be-direct-integration/extras`     
 1. Open the folder package
 1. Go to the Enterprise catalog in Experience manager and drag and drop (or use the import button) each zip file into it.
     * 00000_config-bb-providers-ng.zip
