@@ -38,7 +38,7 @@ public class AtmLocationsRoute extends RouteBuilder {
                 .log(LoggingLevel.INFO, "${body.size} ATM locations retrieved")
                 // This call will transform each element in parallel
                 .split(body(), new GroupedBodyAggregationStrategy()).parallelProcessing()
-                //.bean(atmLocationsTransformer, "transformAtmToLocation(${body})")
+                .bean(atmLocationsTransformer, "transformAtmToLocation(${body})")
                 .end()
                 // Wrap the list of Locations into a response wrapper
                 .setBody(spel("#{new com.backbase.location.rest.spec.v1.locations.LocationsGetResponseBody().withLocations(body)}"));
