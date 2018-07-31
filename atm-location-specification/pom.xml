@@ -5,7 +5,7 @@
     <parent>
         <artifactId>backbase-spec-starter-parent</artifactId>
         <groupId>com.backbase.buildingblocks</groupId>
-        <version>5.10.0</version>
+        <version>5.12.0</version>
     </parent>
 
     <groupId>com.backbase</groupId>
@@ -19,6 +19,12 @@
 
     <build>
         <plugins>
+            <!-- Uncomment this if your API is creating Commands and Events
+            <plugin>
+                <groupId>com.backbase.codegen</groupId>
+                <artifactId>jsonschema-events-maven-plugin</artifactId>
+            </plugin>
+             -->
             <plugin>
                 <groupId>com.backbase.codegen</groupId>
                 <artifactId>raml-api-maven-plugin-1-0</artifactId>
