@@ -2,16 +2,18 @@ server:
   port: 9915
 
 # API Registry client configuration
-registry:
+eureka:
   instance:
     appname: ${spring.application.name}
-    role: live
     healthCheckUrlPath: /production-support/health
-    statusPageUrlPath: /production-support/health
+    statusPageUrlPath: /production-support/info
     nonSecurePort: ${server.port}
-    public: true
+    metadata-map:
+      public: true
+      role: live
   client:
-    serviceUrl: defaultZone=http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8080}/registry/eureka/
+    serviceUrl:
+      defaultZone: http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8080}/registry/eureka/
 
 # Logging
 logging:

@@ -6,6 +6,7 @@ import com.backbase.buildingblocks.logging.api.LoggerFactory;
 import com.backbase.location.rest.spec.v1.locations.Location;
 import com.backbase.location.rest.spec.v1.locations.LocationsApi;
 import com.backbase.location.rest.spec.v1.locations.LocationsGetResponseBody;
+import com.backbase.mappers.LocationMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openbankproject.api.model.InlineResponse200ATM;
@@ -73,7 +74,7 @@ public class AtmLocationsRestController implements LocationsApi {
     }
 
     private List<Location> transformJsonToLocation(List<InlineResponse200ATM> atms) {
-        return atms.stream().map(AtmLocationsTransformer::transformAtmToLocation).collect(Collectors.toList());
+        return atms.stream().map(LocationMapper.INSTANCE::toLocation).collect(Collectors.toList());
 
     }
 }

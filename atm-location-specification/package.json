@@ -1,8 +1,8 @@
 {
-  "name": "location-specification-frontend-codegen",
+  "name": "atm-location-specification-frontend-codegen",
   "config": {
     "version": "0.0.0",
-    "capability": "location-specification",
+    "capability": "atm-location-specification",
     "transform_plugins": "crud"
   },
   "scripts": {
