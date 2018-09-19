@@ -73,8 +73,8 @@ public class AtmLocationsRestController implements LocationsApi {
         }
     }
 
-    private List<Location> transformJsonToLocation(List<InlineResponse200ATM> atms) {
+    public List<Location> transformJsonToLocation(List<InlineResponse200ATM> atms) {
         return atms.stream().map(LocationMapper.INSTANCE::toLocation).collect(Collectors.toList());
-
     }
 }
+
