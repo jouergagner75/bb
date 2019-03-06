@@ -11,13 +11,18 @@ You can access the Open Bank **/atms** endpoint through this [URL](https://api.h
 ---
 
 ## Instructions: Development environment setup
-In order to setup the exercise you need **Edge Service** and **Registry Service**, so you will only require the platform services.
+In order to setup the exercise you need **Edge Service** and **Registry Service**, so you will require the platform services.
+In order to test your service with the real widgets you also need **CXS**.
 
-### Step 1: Start your platform services
+### Step 1: Start your platform and CXS services
 
-1. Follow [this guide](https://bitbucket.org/backbase/cxs-wc2-setup) to start your platform services.
+	Note: 	If they are already running you can skip this step. 
 
-1. Access [Blade console](http://localhost:8080) and check if services were successfully started.
+1. Follow [this guide](https://bitbucket.org/backbase/cxs-wc2-setup) to start your platform and CXS services.
+
+1. Access [Blade console](http://localhost:8080) and check if platform services were successfully started.
+
+1. Access [Blade console](http://localhost:9080) and check if CXS services were successfully started.
 
 ### Step 2: Cloning projects
 
