@@ -6,10 +6,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.processor.aggregate.AbstractListAggregationStrategy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.stream.Collectors;
 
 import static org.apache.camel.language.spel.SpelExpression.spel;
 
@@ -25,13 +22,12 @@ public class AtmLocationsRoute extends RouteBuilder {
 
     private final LocationMapper locationMapper = LocationMapper.INSTANCE;
 
-    @Autowired
     public AtmLocationsRoute(ATMApi atmApi) {
         this.atmApi = atmApi;
     }
 
     @Override
-    public void configure() throws Exception {
+    public void configure() {
         from(DIRECT_GET)
                 .routeId("com.backbase.sample.atms.get")
                 .bean(atmApi, "atmsGet")

@@ -32,15 +32,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author William Suane on 18/09/2018
  */
 
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("it")
 //@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 public class AtmLocationsRestControllerTest {
 
-    @InjectMocks
-    private AtmLocationsRestController atmLocationsRestController;
+//    @InjectMocks
+//    private AtmLocationsRestController atmLocationsRestController;
 
     static {
         System.setProperty("SIG_SECRET_KEY", "JWTSecretKeyDontUseInProduction!");
@@ -71,7 +71,7 @@ public class AtmLocationsRestControllerTest {
     public void shouldMakeRequestAndContainTheJsonWithLocations() throws Exception {
         this.mockMvc
                 .perform(get("/v1/locations")
-                .header("Authorization", TEST_JWT))
+                                 .header("Authorization", TEST_JWT))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("locations")));
