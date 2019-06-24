@@ -1,15 +1,16 @@
 package com.backbase.mappers;
 
 import com.backbase.location.rest.spec.v1.locations.Location;
-import com.openbankproject.api.model.InlineResponse200ATM;
+import com.backbase.beans.InlineResponse200ATM;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 /**
- * @author William Suane on 09/08/2018
- */
+ * @author Alejandro Aguirre
+ * @since 24-06-2019
+ **/
 @Mapper
 public interface LocationMapper {
     LocationMapper INSTANCE = Mappers.getMapper(LocationMapper.class);
@@ -27,6 +28,5 @@ public interface LocationMapper {
             @Mapping(source = "location.postalAddress.postCode", target = "address.postcode")
     })
     Location toLocation(InlineResponse200ATM inlineResponse200ATM);
-
 
 }

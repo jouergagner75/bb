@@ -41,3 +41,7 @@ management:
   health:
     jms:
      enabled: false
+
+rest:
+  locations:
+    url: https://api.hsbc.com/open-banking/v2.1/atms
