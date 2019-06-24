@@ -48,21 +48,3 @@ Hit the service
 
 [http://localhost:8080/gateway/api/atm-location-service/v1/locations](http://localhost:8080/gateway/api/atm-location-service/v1/locations)
 
-### Step 7: Integration with a real widget
-
-1. Go to the `../cxs-be-direct-integration/extras`
-1. Open the folder package
-1. Go to the Enterprise catalog in Experience manager and drag and drop (or use the import button) each zip file into it.
-    * 00000_config-bb-providers-ng.zip
-    * 00001_data-bb-locations-http-ng.zip
-    * 00002_ext-training-atm-details-ng.zip
-    * 00003_ext-training-atm-list-ng.zip
-    * 00004_mock.data-bb-locations-http-ng.zip
-    * 00005_model-training-atm-list-ng.zip
-    * 00006_widget-training-atm-details-ng.zip
-    * 00007_widget-training-atm-list-ng.zip
-1. Go to your Experience Catalog and add the widgets `ATM List` and `ATM Details` to it
-1. Go to your Master Page and on the settings change `Web-basic` to `Backbase Demo Page`
-1. Add the widgets to your page and preview the page.
-1. Add `?disable-mocks` to your URL to get the data from the `atm-location-service`
-
