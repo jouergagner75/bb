@@ -1,7 +1,7 @@
 package com.backbase.mappers;
 
-import com.backbase.location.rest.spec.v1.locations.Location;
 import com.backbase.beans.InlineResponse200ATM;
+import com.backbase.location.rest.spec.v1.locations.Location;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -9,7 +9,6 @@ import org.mapstruct.factory.Mappers;
 
 /**
  * @author Alejandro Aguirre
- * @since 24-06-2019
  **/
 @Mapper
 public interface LocationMapper {

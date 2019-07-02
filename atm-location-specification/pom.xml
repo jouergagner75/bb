@@ -5,13 +5,14 @@
     <parent>
         <artifactId>backbase-spec-starter-parent</artifactId>
         <groupId>com.backbase.buildingblocks</groupId>
-        <version>7.0.1</version>
+        <version>8.2.2</version>
     </parent>
 
     <groupId>com.backbase</groupId>
     <artifactId>atm-location-specification</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Backbase :: Digital Banking Services :: ATM Location Specification</name>
+
+    <name>Backbase :: Direct Integration Service :: ATM Locator Specification</name>
 
     <properties>
         <codegen.serviceName>location</codegen.serviceName>

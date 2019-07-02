@@ -8,12 +8,12 @@ import com.backbase.location.rest.spec.v1.locations.LocationsGetResponseBody;
 import com.backbase.mappers.LocationMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,12 +28,11 @@ import java.util.stream.Collectors;
 
 /**
  * @author Alejandro Aguirre
- * @since 24-06-2019
  **/
 @RestController
+@Slf4j
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AtmLocationsRestController implements LocationsApi {
-
-    private final Logger LOGGER = LoggerFactory.getLogger(AtmLocationsRestController.class);
 
     private final ObjectMapper objectMapper;
 
@@ -42,18 +41,12 @@ public class AtmLocationsRestController implements LocationsApi {
     @Value("${rest.locations.url}")
     private String locationsUrl;
 
-    public AtmLocationsRestController(ObjectMapper objectMapper,
-                                      RestTemplateBuilder restTemplateBuilder) {
-        this.objectMapper = objectMapper;
-        this.restTemplate = restTemplateBuilder.build();
-    }
-
     @Override
     public LocationsGetResponseBody getLocations(final HttpServletRequest httpServletRequest, final HttpServletResponse httpServletResponse) {
         try {
             return new LocationsGetResponseBody().withLocations(parseLocationJson());
         } catch (Exception e) {
-            LOGGER.info("Error trying to get the locations", e);
+            log.error("Error trying to get the locations", e);
         }
         return null;
     }
@@ -61,8 +54,7 @@ public class AtmLocationsRestController implements LocationsApi {
     private List<Location> parseLocationJson() throws JSONException, IOException {
         String json = executeRequest();
         // @formatter:off
-        List<InlineResponse200Data> response = objectMapper.readValue(new JSONObject(json).getJSONArray("data").toString(),
-                new TypeReference<List<InlineResponse200Data>>() {});
+        List<InlineResponse200Data> response = objectMapper.readValue(new JSONObject(json).getJSONArray("data").toString(), new TypeReference<List<InlineResponse200Data>>() {});
         // @formatter:on
         List<InlineResponse200ATM> atmList = !response.isEmpty() ? response.get(0).getBrand().get(0).getATM() : new ArrayList<>(1);
         return transformJsonToLocation(atmList);
@@ -72,7 +64,7 @@ public class AtmLocationsRestController implements LocationsApi {
         try {
             return restTemplate.getForEntity(locationsUrl, String.class).getBody();
         } catch (Exception e) {
-            LOGGER.info("Looks like the server is down, getting the JSON from the file");
+            log.info("Looks like the server is down, getting the JSON from the file");
             return new String(Files.readAllBytes(Paths.get("../extras/atms.json")));
         }
     }

@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * @author Alejandro Aguirre
- * @since 24-06-2019
  **/
 public class InlineResponse200Brand {
     @JsonProperty("BrandName")

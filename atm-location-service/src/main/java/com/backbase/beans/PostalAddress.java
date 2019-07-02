@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Alejandro Aguirre
- * @since 24-06-2019
  **/
 public class PostalAddress {
 
