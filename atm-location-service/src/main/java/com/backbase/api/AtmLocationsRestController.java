@@ -1,10 +1,10 @@
 package com.backbase.api;
 
+import com.backbase.atm.location.rest.spec.v1.locations.Location;
+import com.backbase.atm.location.rest.spec.v1.locations.LocationsApi;
+import com.backbase.atm.location.rest.spec.v1.locations.LocationsGetResponseBody;
 import com.backbase.beans.InlineResponse200ATM;
 import com.backbase.beans.InlineResponse200Data;
-import com.backbase.location.rest.spec.v1.locations.Location;
-import com.backbase.location.rest.spec.v1.locations.LocationsApi;
-import com.backbase.location.rest.spec.v1.locations.LocationsGetResponseBody;
 import com.backbase.mappers.LocationMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

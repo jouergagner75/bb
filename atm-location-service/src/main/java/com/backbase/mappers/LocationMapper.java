@@ -1,7 +1,7 @@
 package com.backbase.mappers;
 
+import com.backbase.atm.location.rest.spec.v1.locations.Location;
 import com.backbase.beans.InlineResponse200ATM;
-import com.backbase.location.rest.spec.v1.locations.Location;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

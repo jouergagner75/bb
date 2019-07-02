@@ -1,28 +1,34 @@
 # How to implement a direct integration service
 
-A Direct Integration Service is a micro-service that is built with the Backbase Service SDK and runs within the Backbase 6 infrastructure (Edge Service and Registry Service).
+You already know what is a direct integration service and when it should be used. Now let's warm-up a little.
+Here you have a project partially done. In this project you will find
 
-For this exercise, you will create a Direct Integration Service exposing the **"/locations"** REST endpoint, defined by a provided RAML specification. This endpoint will be consumed by the Locations Widget.
+1. atm-location.specification 
+1. atm-location-service
 
-Internally, this service will call the Open Bank API's **"/atms"** REST service, defined by a Swagger specification.
+These services will connect to a server at [HSBC](https://api.hsbc.com/open-banking/v2.1/atms) to retrieve the HSBC ATM locations.
 
-You can access the Open Bank **/atms** endpoint through this [URL](https://api.hsbc.com/open-banking/v2.1/atms)
+So far you saw that Backbase follows the contract first approach through RAML. That is why we have a specification called `atm-location-specification`. This is the contract between our `atm-location-service` and the widgets.
+
+The purpose of this service is to get the data from HSBC, fulfill the contract by mapping the data to the specification project and return the data to the widgets.
+
+Since this is a warm-up exercise both services are partially done. We removed essential parts of it and replaced with TODOs.
+
+Your job is to follow the TODOs and replace the missing parts with the right code.
 
 ---
 
 ## Instructions: Development environment setup
-In order to setup the exercise you need **Edge Service** and **Registry Service**, so you will require the platform services.
-In order to test your service with the real widgets you also need **CXS**.
 
-### Step 1: Start your platform and CXS services
+In order to setup the exercise you need **Edge Service, Registry Service, Authentication Service and Token Converter**, so you will require the platform services.
+
+### Step 1: Start your platform
 
 	Note: 	If they are already running you can skip this step. 
 
-1. Follow [this guide](https://bitbucket.org/backbase/cxs-wc2-setup) to start your platform and CXS services.
+1. Follow [this guide](https://bitbucket.org/backbase/cxs-wc3-setup) to start your platform and CXS services.
 
 1. Access [Blade console](http://localhost:8080) and check if platform services were successfully started.
-
-1. Access [Blade console](http://localhost:9080) and check if CXS services were successfully started.
 
 ### Step 2: Cloning projects
 
