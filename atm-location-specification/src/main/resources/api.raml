@@ -16,3 +16,13 @@ protocols: [ HTTP, HTTPS ]
         body:
           application/json:
             type: !include schemas/locations-get-response.json
+
+
+  /{locationId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: !include schemas/location.json
+              example: !include examples/location.json
