@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.backbase</groupId>
-    <artifactId>direct-integration-exercise</artifactId>
+    <artifactId>cxs-be-direct-integration-atm-location</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Backbase DBS :: Parent</name>
+    <name>Backbase :: Direct Integration Service :: ATM Aggregator</name>
 
 
     <properties>

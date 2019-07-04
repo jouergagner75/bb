@@ -4,23 +4,12 @@ server:
 # API Registry client configuration
 eureka:
   instance:
-    appname: ${spring.application.name}
-    healthCheckUrlPath: /production-support/health
-    statusPageUrlPath: /production-support/info
-    nonSecurePort: ${server.port}
     metadata-map:
       public: true
       role: live
   client:
     serviceUrl:
       defaultZone: http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8080}/registry/eureka/
-
-# Logging
-logging:
-  level:
-    root: INFO
-    com.backbase: INFO
-    org.springframework: INFO
 
 # Configure Internal JWT handler
 sso:
@@ -31,13 +20,16 @@ sso:
           type: ENV
           value: SIG_SECRET_KEY
 
-# Define app defaults
-endpoints:
-  jmx:
-    domain: ${spring.application.name}
+logging:
+  level:
+    com.backbase: INFO
+    org.springframework: INFO
 
 # Spring health monitoring
 management:
   health:
     jms:
-     enabled: false
+      enabled: false
+rest:
+  locations:
+    url: https://api.hsbc.com/open-banking/v2.1/atms

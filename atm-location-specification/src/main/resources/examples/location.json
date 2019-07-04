@@ -1,0 +1,16 @@
+{
+  "coordinates": {
+    "latitude": 13,
+    "longitude": 26
+  },
+  "address": {
+    "nameOrNumber": "9",
+    "country": "Netherlands",
+    "postcode": "1018LL",
+    "street": "Jacob Bontiusplaats",
+    "town": "Amsterdam"
+  },
+  "id": "2",
+  "name": "Backbase Amsterdam HQ",
+  "type": "office"
+}
