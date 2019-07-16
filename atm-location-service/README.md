@@ -24,3 +24,22 @@ Hit the service
 
 [http://localhost:8080/gateway/api/atm-location-service/v1/locations](http://localhost:8080/gateway/api/atm-location-service/v1/locations)
 
+### Integrate the service with real widgets
+
+1. Go to the `../extras` folder in your terminal
+1. Execute the following command to import the widget into your Enterprise Catalog **Make sure you have CXS services running at [http://localhost:9080](http://localhost:9080)**
+
+```
+java -jar cx6-import-tool-cli-6.1.1.jar --import banking-app.zip --auth-url=http://localhost:8080/gateway/api/auth/login --target-ctx=http://localhost:8080/gateway/api/provisioning --username=admin --password=admin
+```
+
+1. Create a new Experience and open it
+1. Go to the master page and change the property **based on** from `Web-basic` to `Lean Page`
+1. Go to Experience Catalog and import the following widgets
+    1. Peachtree Bank WA3 App
+    1. AtmWidget Widget
+1. Go back to your home page and do the following steps
+    1. First drag-n-drop the `Peachtree Bank WA3` App into the page
+    1. Now drag-n-drop the `AtmWidget Widget` over the `Peachtree Bank WA3`
+1. To enable or disable the mocked data of the widget
+    1. Open the browser console and enter the following command to disable `localStorage.setItem("enableMocks",false);` or to enable `localStorage.setItem("enableMocks",true);`
