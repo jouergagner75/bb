@@ -33,6 +33,8 @@ Hit the service
 java -jar cx6-import-tool-cli-6.1.1.jar --import banking-app.zip --auth-url=http://localhost:8080/gateway/api/auth/login --target-ctx=http://localhost:8080/gateway/api/provisioning --username=admin --password=admin
 ```
 
+1. Lets enable mocks first
+    1. Open the browser console and enter the following command on the console tab to **enable** mocked data `localStorage.setItem("enableMocks",true);`
 1. Create a new Experience and open it
 1. Go to the master page and change the property **based on** from `Web-basic` to `Lean Page`
 1. Go to Experience Catalog and import the following widgets
@@ -41,5 +43,5 @@ java -jar cx6-import-tool-cli-6.1.1.jar --import banking-app.zip --auth-url=http
 1. Go back to your home page and do the following steps
     1. First drag-n-drop the `Peachtree Bank WA3` App into the page
     1. Now drag-n-drop the `AtmWidget Widget` over the `Peachtree Bank WA3`
-1. To enable or disable the mocked data of the widget
-    1. Open the browser console and enter the following command to disable `localStorage.setItem("enableMocks",false);` or to enable `localStorage.setItem("enableMocks",true);`
+1. Disable the mocked data to test with real data
+    1. Open the browser console and enter the following command on the console tab to **disable** mocked data `localStorage.setItem("enableMocks",false);`
