@@ -6,6 +6,7 @@ import com.backbase.atm.location.rest.spec.v1.locations.LocationsApi;
 import com.backbase.atm.location.rest.spec.v1.locations.LocationsGetResponseBody;
 import com.backbase.beans.InlineResponse200ATM;
 import com.backbase.beans.InlineResponse200Data;
+import com.backbase.buildingblocks.presentation.errors.NotFoundException;
 import com.backbase.mappers.LocationMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,7 +55,7 @@ public class AtmLocationsRestController implements LocationsApi {
     @Override
     @SneakyThrows
     public LocationIdGetResponseBody getLocationId(String locationId, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        Location location = parseLocationJson().stream().filter(l -> locationId.equals(l.getId())).findAny().orElse(null);
+        Location location = parseLocationJson().stream().filter(l -> locationId.equals(l.getId())).findAny().orElseThrow(NotFoundException::new);
         return new LocationIdGetResponseBody().withId(location.getId()).withAddress(location.getAddress()).withCoordinates(location.getCoordinates()).withName(location.getName()).withType(location.getType());
     }
 
