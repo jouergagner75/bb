@@ -1,0 +1,52 @@
+{
+  "id": "99c0ffe9-063a-6049-f242-c041306f739a",
+  "name": "DBS-Environment",
+  "values": [
+    {
+      "enabled": true,
+      "key": "url",
+      "value": "{{hostName}}:8080/gateway/api/",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "csrfTokenValue",
+      "value": "36e60eb5-abfb-4674-8bca-c57fd1a77dc4",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "entitlementsUrl",
+      "value": "{{hostName}}:8086/",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "productSummaryUrl",
+      "value": "{{hostName}}:8082/",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "paymentUrl",
+      "value": "{{hostName}}:8089/",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "hostName",
+      "value": "localhost",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "transactionsUrl",
+      "value": "{{hostName}}:8083/",
+      "type": "text"
+    }
+  ],
+  "timestamp": 1515164392390,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2018-01-08T09:59:14.429Z",
+  "_postman_exported_using": "Postman/5.4.0"
+}

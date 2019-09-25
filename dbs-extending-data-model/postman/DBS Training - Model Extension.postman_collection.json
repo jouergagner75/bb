@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "4df64125-a1d9-4647-87ad-49158b8d6469",
+		"name": "DBS Training 06 - Model Extension 2.16.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login as Peter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8ec39e57-5f5b-4917-848f-434c813029bf",
+						"type": "text/javascript",
+						"exec": [
+							"var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+							"console.log(xsrfCookie.value);",
+							"postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Peter",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Peter",
+							"type": "text"
+						},
+						{
+							"key": "submit",
+							"value": "Login",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}auth/login",
+					"host": [
+						"{{url}}auth"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set context for Peter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceAgreementId\": \"{{msaIdForKPMG}}\",\n\t\"legalEntityId\": null\n}"
+				},
+				"url": {
+					"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext",
+					"host": [
+						"{{url}}accessgroup-presentation-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"usercontext"
+					]
+				},
+				"description": "Set User context for logged in User.\nService agreement for context = Master Service Agreement of the legal entity where Jon belongs.\nLegal Entity for context = null for now."
+			},
+			"response": []
+		},
+		{
+			"name": "Check permissions for Peter for Contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-privileges?functionName=Contacts&resourceName=Contacts",
+					"host": [
+						"{{url}}accessgroup-presentation-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"users",
+						"user-privileges"
+					],
+					"query": [
+						{
+							"key": "functionName",
+							"value": "Contacts"
+						},
+						{
+							"key": "resourceName",
+							"value": "Contacts"
+						}
+					]
+				},
+				"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_presentation_service_v2_accessgroups_users_user_privileges_get"
+			},
+			"response": []
+		},
+		{
+			"name": "List Contacts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}contact-presentation-service/v2/contacts",
+					"host": [
+						"{{url}}contact-presentation-service"
+					],
+					"path": [
+						"v2",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2fe465f5-039f-41ee-9521-0dd015bb5550",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n      \"name\": \"John Doe\",\n      \"alias\": \"John\",\n      \"category\": \"Employee\",\n      \"contactPerson\": \"Jane Doe\",\n      \"phoneNumber\": \"055512345678\",\n      \"emailId\": \"john@example.com\",\n      \"addressLine1\": \"Jacob Bontiusplaats 9\",\n      \"addressLine2\": \"1018 LL\",\n      \"addressLine3\": \"Amsterdam\",\n      \"addressLine4\": \"the Netherlands\",\n      \"country\": \"NL\",\n      \"accounts\": [\n        {\n          \"name\": \"Saving account\",\n          \"alias\": \"Savings\",\n          \"IBAN\": \"FI21 1234 5600 0007 85\",\n          \"bankName\": \"Test Bank\",\n          \"bankAddressLine1\": \"Jodenbreestraat 96\",\n          \"bankAddressLine2\": \"1011NS\",\n          \"bankAddressLine3\": \"Amsterdam\",\n          \"bankAddressLine4\": \"the Netherlands\",\n          \"bankCountry\": \"NL\"\n        }\n    ],\n  \"additions\":\n    {\n      \"socialProfileLink\": \"http://linkedin.com\",\n      \"relationship\": \"myself\",\n      \"jobTitle\" : \"Developer\"\n    }\n  }"
+				},
+				"url": {
+					"raw": "{{url}}contact-presentation-service/v2/contacts",
+					"host": [
+						"{{url}}contact-presentation-service"
+					],
+					"path": [
+						"v2",
+						"contacts"
+					]
+				},
+				"description": "save contact"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2175bf12-38a3-4ade-b75a-94bef503169b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "40c222f6-d70d-417c-8b30-9d7d8e7f69fb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

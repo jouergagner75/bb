@@ -1,0 +1,7 @@
+# Logging
+logging:
+  level:
+    root: INFO
+    com.backbase: DEBUG
+    org.springframework: INFO
+    com.netflix.discovery: OFF

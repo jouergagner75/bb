@@ -1,0 +1,51 @@
+server:
+  port: 9915
+
+# API Registry client configuration
+eureka:
+  instance:
+    metadata-map:
+      public: true
+      role: live
+  client:
+    serviceUrl:
+      defaultZone: http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8080}/registry/eureka/
+
+# Configure Internal JWT handler
+sso:
+  jwt:
+    internal:
+      signature:
+        key:
+          type: ENV
+          value: SIG_SECRET_KEY
+
+logging:
+  level:
+    com.backbase: INFO
+    org.springframework: INFO
+
+# Spring health monitoring
+management:
+  health:
+    jms:
+      enabled: false
+
+# transferwise endpoints
+url:
+  base: https://api.sandbox.transferwise.tech/v1
+  currency: ${url.base}/borderless-accounts/balance-currencies
+  rates: ${url.base}/rates?source={source}&target={target}&from={from}&to={to}&group=day
+
+
+# basic Authorization token
+
+# TODO 2: Add here the TransferWise Token
+token:
+
+# TODO 3: Setup the spring activemq broker-url.
+spring:
+  activemq:
+    user: admin
+    password: admin
+    broker-url: 

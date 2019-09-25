@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/api-client.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/api-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-atm-location/atm-location-service/atm-location-service.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-atm-location/atm-location-service/atm-location-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/atm-location-service/atm-location-service (1).iml" filepath="$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/atm-location-service/atm-location-service (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-atm-location/atm-location-specification/atm-location-specification.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-atm-location/atm-location-specification/atm-location-specification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/atm-location-specification/atm-location-specification (1).iml" filepath="$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/atm-location-specification/atm-location-specification (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-overriding-controller/auth-service.iml" filepath="$PROJECT_DIR$/cxs-be-security-overriding-controller/auth-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-auth-extension-points/auth-service-extension-points/auth-service (1).iml" filepath="$PROJECT_DIR$/cxs-be-security-auth-extension-points/auth-service-extension-points/auth-service (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-custom-auth-provider/auth-service (2).iml" filepath="$PROJECT_DIR$/cxs-be-security-custom-auth-provider/auth-service (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-auth-extension-points/authentication-service-extension-points.iml" filepath="$PROJECT_DIR$/cxs-be-security-auth-extension-points/authentication-service-extension-points.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/core-utils/core-utils.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/core-utils/core-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbs-scheduled-custom-integration/custom-scheduled-transaction-integration-service.iml" filepath="$PROJECT_DIR$/dbs-scheduled-custom-integration/custom-scheduled-transaction-integration-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbs-custom-integration/custom-transaction-integration-service.iml" filepath="$PROJECT_DIR$/dbs-custom-integration/custom-transaction-integration-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-atm-location/cxs-be-direct-integration-atm-location.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-atm-location/cxs-be-direct-integration-atm-location.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/cxs-be-direct-integration-transaction-ootb.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/cxs-be-direct-integration-transaction-ootb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/cxs-be-security.iml" filepath="$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/cxs-be-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-auth-extension-points/exchange-rate-service/exchange-rate-service.iml" filepath="$PROJECT_DIR$/cxs-be-security-auth-extension-points/exchange-rate-service/exchange-rate-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/exchange-rate-service/exchange-rate-service (1).iml" filepath="$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/exchange-rate-service/exchange-rate-service (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-auth-extension-points/exchange-rate-specification/exchange-rate-specification.iml" filepath="$PROJECT_DIR$/cxs-be-security-auth-extension-points/exchange-rate-specification/exchange-rate-specification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/exchange-rate-specification/exchange-rate-specification (1).iml" filepath="$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/exchange-rate-specification/exchange-rate-specification (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/integrate-access-control-to-direct-integration-exercise.iml" filepath="$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/integrate-access-control-to-direct-integration-exercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/mambu-clients-client-spec/mambu-clients-client-spec.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/mambu-clients-client-spec/mambu-clients-client-spec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/mambu-deposit-accounts-client-spec/mambu-deposit-accounts-client-spec.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/mambu-deposit-accounts-client-spec/mambu-deposit-accounts-client-spec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-multiple-auth-provider/multiple-auth-provider.iml" filepath="$PROJECT_DIR$/cxs-be-security-multiple-auth-provider/multiple-auth-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/training.iml" filepath="$PROJECT_DIR$/.idea/training.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/transactions-direct-integration-service/transactions-direct-integration-service.iml" filepath="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/transactions-direct-integration-service/transactions-direct-integration-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/upstream-downstream-provider/upstream-downstream-provider.iml" filepath="$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/upstream-downstream-provider/upstream-downstream-provider.iml" />
+    </modules>
+  </component>
+</project>

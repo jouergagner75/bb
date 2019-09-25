@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "59b3842a-7122-4d60-b57e-060405b1d1b8",
+		"name": "DBS Training 03 - Ingestion 2.16.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Transactions Ingestion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n    \"id\": \"0000000000000001\",\n    \"arrangementId\": \"A01\",\n    \"reference\": \"BCA-123445\",\n    \"description\": \"TV @ Neptun820\",\n    \"typeGroup\": \"Payment\",\n    \"category\": \"testCategory\",\n    \"type\": \"SEPA CT\",\n    \"bookingDate\": \"2018-02-28T16:41:41.090Z\",\n    \"valueDate\": \"2018-02-28T16:41:41.090Z\",\n    \"creditDebitIndicator\": \"DBIT\",\n    \"amount\": 820,\n    \"currency\": \"EUR\",\n    \"instructedAmount\": 321.2,\n    \"instructedCurrency\": \"USD\",\n    \"currencyExchangeRate\": 2.2,\n    \"counterPartyName\": \"Pluto820\",\n    \"counterPartyAccountNumber\": \"4820\",\n    \"checkSerialNumber\": 0\n },\n {\n    \"id\": \"0000000000000002\",\n    \"arrangementId\": \"A01\",\n    \"reference\": \"DBV-0789NG\",\n    \"description\": \"Online Shop\",\n    \"typeGroup\": \"Payment\",\n    \"type\": \"SEPA CT\",\n    \"bookingDate\": \"2018-03-28T16:41:41.090Z\",\n    \"valueDate\": \"2018-03-28T16:41:41.090Z\",\n    \"amount\": 299,\n    \"currency\": \"EUR\",\n    \"creditDebitIndicator\": \"DBIT\",\n    \"category\": \"goodies\",\n    \"instructedAmount\": 299,\n    \"instructedCurrency\": \"USD\",\n    \"currencyExchangeRate\": 1.3,\n    \"counterPartyName\": \"Mickey190\",\n    \"counterPartyAccountNumber\": \"2190\",\n    \"checkSerialNumber\": 0\n\n },\n {\n    \"id\": \"0000000000000003\",\n    \"arrangementId\": \"A02\",\n    \"reference\": \"1909-0020-7901-3227\",\n    \"description\": \"Restaurant\",\n    \"typeGroup\": \"Payment\",\n    \"type\": \"SEPA CT\",\n    \"bookingDate\": \"2018-03-29T16:41:41.090Z\",\n    \"valueDate\": \"2018-03-29T16:41:41.090Z\",\n    \"amount\": 175,\n    \"currency\": \"EUR\",\n    \"creditDebitIndicator\": \"DBIT\",\n    \"category\": \"food\",\n    \"instructedAmount\": 175,\n    \"instructedCurrency\": \"USD\",\n    \"currencyExchangeRate\": 1.2,\n    \"counterPartyName\": \"Ida43\",\n    \"counterPartyAccountNumber\": \"4309\",\n\t\"checkSerialNumber\": 0\n\n }\n ]"
+				},
+				"url": {
+					"raw": "{{transactionsUrl}}transaction-integration-service/v2/transactions",
+					"host": [
+						"{{transactionsUrl}}"
+					],
+					"path": [
+						"transaction-integration-service",
+						"v2",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "07e6a982-92e0-497f-a553-40609600c329",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a1314c68-d457-4e47-8618-2501698c7ad5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

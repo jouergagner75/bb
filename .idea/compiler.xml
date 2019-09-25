@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="atm-location-specification" />
+        <module name="mambu-clients-client-spec" />
+        <module name="auth-service (2)" />
+        <module name="upstream-downstream-provider" />
+        <module name="atm-location-specification (1)" />
+        <module name="core-utils" />
+        <module name="exchange-rate-specification" />
+        <module name="auth-service (1)" />
+        <module name="custom-transaction-integration-service" />
+        <module name="exchange-rate-specification (1)" />
+        <module name="multiple-auth-provider" />
+        <module name="mambu-deposit-accounts-client-spec" />
+        <module name="atm-location-service (1)" />
+        <module name="auth-service" />
+      </profile>
+      <profile name="Annotation profile for Backbase :: Direct Integration Service :: ATM Aggregator" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.3.0.Final/mapstruct-processor-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/jolira/hickory/1.0.0/hickory-1.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.3.0.Final/mapstruct-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/puppycrawl/tools/checkstyle/8.14/checkstyle-8.14.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.6/plexus-container-default-1.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-test/4.0.3.RELEASE/spring-test-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.3.RELEASE/spring-beans-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.8/lombok-1.18.8.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.3.0.Final/mapstruct-processor-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/jolira/hickory/1.0.0/hickory-1.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.3.0.Final/mapstruct-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/puppycrawl/tools/checkstyle/8.14/checkstyle-8.14.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.6/plexus-container-default-1.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-test/4.0.3.RELEASE/spring-test-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.3.RELEASE/spring-beans-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.8/lombok-1.18.8.jar" />
+        </processorPath>
+        <module name="atm-location-service" />
+      </profile>
+      <profile name="Annotation profile for Backbase :: DBS :: Custom Integration Service Transactions" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.3.0.Final/mapstruct-processor-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/jolira/hickory/1.0.0/hickory-1.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.3.0.Final/mapstruct-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/puppycrawl/tools/checkstyle/8.14/checkstyle-8.14.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.6/plexus-container-default-1.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-test/4.0.3.RELEASE/spring-test-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.3.RELEASE/spring-beans-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar" />
+        </processorPath>
+        <module name="custom-scheduled-transaction-integration-service" />
+      </profile>
+      <profile name="Annotation profile for Backbase :: DBS :: Exchange Rate with Access-Control" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.3.0.Final/mapstruct-processor-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/jolira/hickory/1.0.0/hickory-1.0.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.3.0.Final/mapstruct-1.3.0.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/puppycrawl/tools/checkstyle/8.14/checkstyle-8.14.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.6/plexus-container-default-1.6.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-test/4.0.3.RELEASE/spring-test-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.3.RELEASE/spring-beans-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar" />
+          <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.8/lombok-1.18.8.jar" />
+        </processorPath>
+        <module name="exchange-rate-service (1)" />
+        <module name="transactions-direct-integration-service" />
+        <module name="exchange-rate-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-client" target="1.5" />
+      <module name="atm-location-service" target="1.8" />
+      <module name="atm-location-service (1)" target="1.5" />
+      <module name="atm-location-specification" target="1.8" />
+      <module name="atm-location-specification (1)" target="1.5" />
+      <module name="auth-service" target="1.5" />
+      <module name="auth-service (1)" target="1.5" />
+      <module name="auth-service (2)" target="1.5" />
+      <module name="authentication-service-extension-points" target="1.8" />
+      <module name="core-utils" target="1.8" />
+      <module name="custom-scheduled-transaction-integration-service" target="1.8" />
+      <module name="custom-transaction-integration-service" target="1.5" />
+      <module name="cxs-be-direct-integration-atm-location" target="1.8" />
+      <module name="cxs-be-direct-integration-transaction-ootb" target="1.5" />
+      <module name="cxs-be-security" target="1.8" />
+      <module name="exchange-rate-service" target="1.8" />
+      <module name="exchange-rate-service (1)" target="1.8" />
+      <module name="exchange-rate-specification" target="1.8" />
+      <module name="exchange-rate-specification (1)" target="1.8" />
+      <module name="integrate-access-control-to-direct-integration-exercise" target="1.8" />
+      <module name="mambu-clients-client-spec" target="1.7" />
+      <module name="mambu-deposit-accounts-client-spec" target="1.7" />
+      <module name="multiple-auth-provider" target="1.5" />
+      <module name="transactions-direct-integration-service" target="1.8" />
+      <module name="upstream-downstream-provider" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="atm-location-service" options="-parameters" />
+      <module name="custom-scheduled-transaction-integration-service" options="-parameters" />
+      <module name="exchange-rate-service" options="-parameters" />
+      <module name="exchange-rate-service (1)" options="-parameters" />
+      <module name="transactions-direct-integration-service" options="-parameters" />
+    </option>
+  </component>
+</project>

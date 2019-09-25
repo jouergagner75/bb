@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--Same version used by SSDK 7.2.0 for direct integration-->
+
+    <groupId>com.backbase.peachtree</groupId>
+    <artifactId>core-utils</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Mambu :: Core :: Utils</name>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <jwt.version>2.0.0</jwt.version>
+        <spring-security.version>4.2.7.RELEASE</spring-security.version>
+        <lombok.version>1.18.8</lombok.version>
+        <spring-security.version>4.2.7.RELEASE</spring-security.version>
+        <mambu-clients-client-spec.version>1.0.0</mambu-clients-client-spec.version>
+        <mambu-deposit-accounts-client-spec.version>1.0.0</mambu-deposit-accounts-client-spec.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>jwt-core</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>mambu-clients-client-spec</artifactId>
+            <version>${mambu-clients-client-spec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>mambu-deposit-accounts-client-spec</artifactId>
+            <version>${mambu-deposit-accounts-client-spec.version}</version>
+        </dependency>
+        <!--        TODO 1: Download the specification for the Mambu transactions on this link https://backbase.sandbox.mambu.com/apidocs/#Deposit_Transactions at the bottom right-->
+        <!--        TODO 2: Add the specification to the api-client module, renaming it to match the other specifications -->
+        <!--        TODO 3: Add the dependency at this pom-->
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

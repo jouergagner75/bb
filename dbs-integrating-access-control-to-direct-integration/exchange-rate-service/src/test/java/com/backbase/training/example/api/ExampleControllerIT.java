@@ -1,0 +1,87 @@
+package com.backbase.training.example.api;
+
+import com.backbase.training.Application;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+/**
+ * Integration test class for the ExampleController
+ */
+@SpringBootTest(classes = Application.class, properties = {
+        "buildingblocks.security.xss.autoconfig=true"})
+@ActiveProfiles("it")
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
+@RunWith(SpringJUnit4ClassRunner.class)
+@AutoConfigureMockMvc
+public class ExampleControllerIT {
+    /**
+     * Created using http://jwtbuilder.jamiekurtz.com/
+     * <PRE>
+     * {
+     * "Role" : [
+     * "Manager",
+     * "Project Administrator"
+     * ],
+     * "inuid" : "Jimmy",
+     * "aud" : "www.example.com",
+     * "sub" : "jrocket@example.com",
+     * "Email" : "jrocket@example.com",
+     * "iss" : "Online JWT Builder",
+     * "GivenName" : "Johnny",
+     * "exp" : 1516356196,
+     * "iat" : 1484820196,
+     * "Surname" : "Rocket"
+     * }
+     * </PRE>
+     */
+    public static final String TEST_JWT =
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxk"
+                    + "ZXIiLCJpYXQiOjE0ODQ4MjAxOTYsImV4cCI6MTUxNjM1NjE5NiwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJv"
+                    + "Y2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2Nr"
+                    + "ZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXSwiaW51aWQiOiJKaW1te"
+                    + "SJ9.O9TE28ygrHmDjItYK6wRis6wELD5Wtpi6ekeYfR1WqM";
+
+    static {
+        System.setProperty("SIG_SECRET_KEY", "JWTSecretKeyDontUseInProduction!");
+    }
+
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    @Autowired
+    private MockMvc mvc;
+//
+//    @Test
+//    public void testExampleCreate() throws Exception {
+//        DummyPostRequestBody requestContent = new DummyPostRequestBody()
+//                .withId("1")
+//                .withName("Foo");
+//
+//        MockHttpServletRequestBuilder requestBuilder = post("/v1/example/create")
+//                .header("Authorization", TEST_JWT)
+//                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(mapper.writeValueAsString(requestContent));
+//
+//        ResultActions result = mvc.perform(requestBuilder).andDo(print());
+//
+//        // Then the request is successful
+//        result = result.andExpect(status().isCreated());
+//
+//        // And a response is returned
+//        MvcResult response = result.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
+//
+//        // Check response
+//        String responseBody = response.getResponse().getContentAsString();
+//        DummyPostResponseBody dummyPostResponseBody = mapper.readValue(responseBody, DummyPostResponseBody.class);
+//
+//        assertThat("ID in response should match ID in request", dummyPostResponseBody.getId(), is(requestContent.getId()));
+//    }
+
+}

@@ -1,0 +1,584 @@
+{
+  "info": {
+    "_postman_id": "86f0d732-706a-44bf-8348-d5476a23d06d",
+    "name": "DBS Training 02 - Integrating Direct Integration Service with Access Control 2.16.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Job Profile for MSA of KPMG (Viewer of Currencies)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bdd5a5d9-d5dc-4c09-a241-2fc1854ae2b0",
+            "exec": [
+              "var response = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"FG_KPMG_View_Currencies\", response.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/function-groups",
+          "host": [
+            "{{entitlementsUrl}}accessgroup-integration-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "function-groups"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Assign Permission to Peter to (View All Currencies)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n   {  \n      \"externalServiceAgreementId\":\"KPMG_External\",\n      \"externalUserId\":\"Peter\",\n      \"functionGroupDataGroups\":[  \n         {  \n            \"functionGroupIdentifier\":{  \n               \"idIdentifier\":\"{{FG_KPMG_View_PS_Transactions}}\"\n            },\n            \"dataGroupIdentifiers\":[  \n               {  \n                  \"idIdentifier\":\"{{DG_KPMG_All_Accounts}}\"\n               }\n            ]\n         }\n      ]\n   }\n]"
+        },
+        "url": {
+          "raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/users/permissions/user-permissions",
+          "host": [
+            "{{entitlementsUrl}}accessgroup-integration-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "users",
+            "permissions",
+            "user-permissions"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "1. Create Job Profile for MSA of KPMG (Viewer of Exchange Rates)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bdd5a5d9-d5dc-4c09-a241-2fc1854ae2b0",
+            "exec": [
+              "var response = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"FG_KPMG_View_Rates\", response.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t\"name\": \"Viewer of Exchange Rates\",\r\n\t\"description\": \"This profile will control who can view the exchange rates\",\r\n\t\"externalServiceAgreementId\": \"KPMG_External\",\r\n\t\"permissions\": [\r\n\t\t{\r\n\t\t\t\"functionId\": \"2001\",\r\n\t\t\t\"assignedPrivileges\": [{\r\n\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t}]\r\n\t\t}\r\n\r\n\t]\r\n}"
+        },
+        "url": {
+          "raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/function-groups",
+          "host": [
+            "{{entitlementsUrl}}accessgroup-integration-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "function-groups"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Assign Permission to Jonathan to (View All Exchange Rates)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n   {\n      \"externalServiceAgreementId\":\"KPMG_External\",\n      \"externalUserId\":\"Jonathan\",\n      \"functionGroupDataGroups\":[\n         {\n            \"functionGroupIdentifier\":{\n               \"idIdentifier\":\"{{FG_KPMG_View_Rates}}\"\n            },\n            \"dataGroupIdentifiers\":[]\n         }\n      ]\n   }\n]"
+        },
+        "url": {
+          "raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/users/permissions/user-permissions",
+          "host": [
+            "{{entitlementsUrl}}accessgroup-integration-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "users",
+            "permissions",
+            "user-permissions"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Login as Peter",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+              "console.log(xsrfCookie.value);",
+              "postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "Peter",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "Peter",
+              "type": "text"
+            },
+            {
+              "key": "submit",
+              "value": "Login",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{url}}auth/login",
+          "host": [
+            "{{url}}auth"
+          ],
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Set context for Peter",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"serviceAgreementId\": \"{{msaIdForKPMG}}\"\n}"
+        },
+        "url": {
+          "raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext?_csrf={{xsrf-token}}",
+          "host": [
+            "{{url}}accessgroup-presentation-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "usercontext"
+          ],
+          "query": [
+            {
+              "key": "_csrf",
+              "value": "{{xsrf-token}}"
+            }
+          ]
+        },
+        "description": "Set User context for logged in User.\nService agreement for context = Master Service Agreement of the legal entity where Jon belongs.\nLegal Entity for context = null for now."
+      },
+      "response": []
+    },
+    {
+      "name": "5. Check privileges view for Peter: Manage Currencies",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "652bba91-8cd2-436b-8bc8-253955f663ba",
+            "exec": [
+              "var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+              "console.log(xsrfCookie.value);",
+              "postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-permissions?functionName=Manage Currencies&resourceName=Currencies&privileges=view",
+          "host": [
+            "{{url}}accessgroup-presentation-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "users",
+            "user-permissions"
+          ],
+          "query": [
+            {
+              "key": "functionName",
+              "value": "Manage Currencies"
+            },
+            {
+              "key": "resourceName",
+              "value": "Currencies"
+            },
+            {
+              "key": "privileges",
+              "value": "view"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Check privilege view for Peter: Manage Exchange Rates (Should Fail)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "652bba91-8cd2-436b-8bc8-253955f663ba",
+            "exec": [
+              "var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+              "console.log(xsrfCookie.value);",
+              "postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-permissions?functionName=Manage Exchange Rates&resourceName=Rates&privileges=view",
+          "host": [
+            "{{url}}accessgroup-presentation-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "users",
+            "user-permissions"
+          ],
+          "query": [
+            {
+              "key": "functionName",
+              "value": "Manage Exchange Rates"
+            },
+            {
+              "key": "resourceName",
+              "value": "Rates"
+            },
+            {
+              "key": "privileges",
+              "value": "view"
+            }
+          ]
+        },
+        "description": "This will return 200 if he has the privileges"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Login as Jonathan",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "5f52fddb-8f7d-46db-a688-ec0e89f2d1f2",
+            "exec": [
+              "var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+              "console.log(xsrfCookie.value);",
+              "postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "Jonathan",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "Jonathan",
+              "type": "text"
+            },
+            {
+              "key": "submit",
+              "value": "Login",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{url}}auth/login",
+          "host": [
+            "{{url}}auth"
+          ],
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Set context for Jonathan",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"serviceAgreementId\": \"{{msaIdForKPMG}}\"\n}"
+        },
+        "url": {
+          "raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext?_csrf={{xsrf-token}}",
+          "host": [
+            "{{url}}accessgroup-presentation-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "usercontext"
+          ],
+          "query": [
+            {
+              "key": "_csrf",
+              "value": "{{xsrf-token}}"
+            }
+          ]
+        },
+        "description": "Set User context for logged in User.\nService agreement for context = Master Service Agreement of the legal entity where Jon belongs.\nLegal Entity for context = null for now."
+      },
+      "response": []
+    },
+    {
+      "name": "5. Check privilege view for Jonathan: Manage Exchange Rates",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "652bba91-8cd2-436b-8bc8-253955f663ba",
+            "exec": [
+              "var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+              "console.log(xsrfCookie.value);",
+              "postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-permissions?functionName=Manage Exchange Rates&resourceName=Rates&privileges=view",
+          "host": [
+            "{{url}}accessgroup-presentation-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "users",
+            "user-permissions"
+          ],
+          "query": [
+            {
+              "key": "functionName",
+              "value": "Manage Exchange Rates"
+            },
+            {
+              "key": "resourceName",
+              "value": "Rates"
+            },
+            {
+              "key": "privileges",
+              "value": "view"
+            }
+          ]
+        },
+        "description": "This will return 200 if he has the privileges"
+      },
+      "response": []
+    },
+    {
+      "name": "6. Check privilege view for Jonathan: Manage Currencies (Should Fail)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "652bba91-8cd2-436b-8bc8-253955f663ba",
+            "exec": [
+              "var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+              "console.log(xsrfCookie.value);",
+              "postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-permissions?functionName=Manage Currencies&resourceName=Currencies&privileges=view",
+          "host": [
+            "{{url}}accessgroup-presentation-service"
+          ],
+          "path": [
+            "v2",
+            "accessgroups",
+            "users",
+            "user-permissions"
+          ],
+          "query": [
+            {
+              "key": "functionName",
+              "value": "Manage Currencies"
+            },
+            {
+              "key": "resourceName",
+              "value": "Currencies"
+            },
+            {
+              "key": "privileges",
+              "value": "view"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "bec99bd6-5996-4cc8-90e4-c9cc5bf592fb",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "23912642-dce4-42ed-bce0-028c6aec0594",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

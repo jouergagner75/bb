@@ -1,0 +1,1138 @@
+{
+	"info": {
+      "_postman_id": "2a3bb30c-28ff-4456-ae7c-31dfa6e24135",
+      "name": "DBS Training 05 - Extending Contacts Behavior 2.16.0 using hooks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 - Create Job Profile to Manage Contacts for KPMG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c07dfad-2309-47f1-89bc-d3227cea1b5b",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"FG_ID_MANAGE_CONTACTS_AMSTERDAM\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Manage Contacts for KPMG\",\t\r\n  \"description\": \"This job profile will enable users to view, create and edit contacts for KPMG\",\r\n  \"externalServiceAgreementId\": \"KPMG_External\",\r\n  \"permissions\": [\r\n\t\t{\r\n\t\t\t\"functionId\": \"{{FG_ID_CONTACTS}}\",\r\n\t\t\t\"assignedPrivileges\": [{\r\n\t\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"privilege\": \"create\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"privilege\": \"edit\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/function-groups",
+					"host": [
+						"{{entitlementsUrl}}accessgroup-integration-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"function-groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - Assign Permission to Peter to Manage SEPA Payments for Amsterdam Copy",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+                  "raw": "[\n   {\n      \"externalServiceAgreementId\":\"KPMG_External\",\n      \"externalUserId\":\"Peter\",\n      \"functionGroupDataGroups\":[\n         {  \n            \"functionGroupIdentifier\":{  \n               \"idIdentifier\":\"{{FG_KPMG_View_PS_Transactions}}\"\n            },\n            \"dataGroupIdentifiers\":[  \n               {  \n                  \"idIdentifier\":\"{{DG_KPMG_All_Accounts}}\"\n               }\n            ]\n         },\n         {\n            \"functionGroupIdentifier\":{\n               \"idIdentifier\":\"{{FG_KPMG_View_Currencies}}\"\n            },\n            \"dataGroupIdentifiers\":[\n            ]\n         },\n         {\n            \"functionGroupIdentifier\":{\n               \"idIdentifier\":\"{{FG_ID_MANAGE_SEPA_PAYMENTS_AMSTERDAM}}\"\n            },\n            \"dataGroupIdentifiers\":[\n               {\n                  \"idIdentifier\":\"{{DG_KPMG_All_Accounts}}\"\n               }\n            ]\n         }\n      ]\n   }\n]"
+				},
+				"url": {
+					"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/users/permissions/user-permissions",
+					"host": [
+						"{{entitlementsUrl}}accessgroup-integration-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"users",
+						"permissions",
+						"user-permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - Auth as Peter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic Og=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Peter",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Peter",
+							"type": "text"
+						},
+						{
+							"key": "submit",
+							"value": "Login",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}auth/login",
+					"host": [
+						"{{url}}auth"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Authenticate"
+			},
+			"response": []
+		},
+		{
+			"name": "Set context for Peter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceAgreementId\": \"{{msaIdForKPMG}}\",\n\t\"legalEntityId\": null\n}"
+				},
+				"url": {
+					"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext",
+					"host": [
+						"{{url}}accessgroup-presentation-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"usercontext"
+					]
+				},
+				"description": "Set User context for logged in User.\nService agreement for context = Master Service Agreement of the legal entity where Jon belongs.\nLegal Entity for context = null for now."
+			},
+			"response": []
+		},
+		{
+			"name": "04 - Search for the user's Service Agreement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85dd0998-ce55-41c5-8a47-2032bd40ece2",
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"var serviceAgreementId = JSON.parse(responseBody)[0].id;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);",
+							"postman.setEnvironmentVariable(\"serviceAgreementId\", serviceAgreementId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext/serviceagreements",
+					"host": [
+						"{{url}}accessgroup-presentation-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"usercontext",
+						"serviceagreements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05 - Create a new contact John Doe in Peter's contact list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d9651cd0-18de-45a3-8c2e-662f7bf880fb",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c24ff5ed-b2ae-4cb1-8e11-350031bfdfd3",
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"John Doe\",\n  \"alias\": \"John\",\n  \"category\": \"Employee\",\n  \"contactPerson\": \"Jane Doe\",\n  \"phoneNumber\": \"055512345678\",\n  \"emailId\": \"john@example.com\",\n  \"addressLine1\": \"Backbase enterprise\",\n  \"addressLine2\": \"\",\n  \"streetName\": \"Jacob Bontiusplaats 9\",\n  \"town\": \"Amsterdam\",\n  \"postCode\": \"1018 LL\",\n  \"countrySubDivision\": \"North Holland\",\n  \"country\": \"NL\",\n  \"accounts\": [\n    {\n      \"name\": \"Saving account\",\n      \"alias\": \"Savings\",\n      \"IBAN\": \"FI21 1234 5600 0007 85\",\n      \"bankName\": \"Test Bank\",\n      \"bankAddressLine1\": \"Test Bank Co\",\n      \"bankAddressLine2\": \"\",\n      \"bankStreetName\": \"Jodenbreestraat 96\",\n      \"bankTown\": \"Amsterdam\",\n      \"bankPostCode\": \"1011NS\",\n      \"bankCountrySubDivision\": \"North Holland\",\n      \"bankCountry\": \"NL\",\n      \"accountHolderAddressLine1\": \"Backbase enterprise\",\n      \"accountHolderAddressLine2\": \"\",\n      \"accountHolderStreetName\": \"Jacob Bontiusplaats 9\",\n      \"accountHolderTown\": \"Amsterdam\",\n      \"accountHolderPostCode\": \"1018 LL\",\n      \"accountHolderCountrySubDivision\": \"North Holland\",\n      \"accountHolderCountry\": \"NL\"\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "{{url}}contact-presentation-service/v2/contacts",
+					"host": [
+						"{{url}}contact-presentation-service"
+					],
+					"path": [
+						"v2",
+						"contacts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{},
+								{}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/gateway/api/contact-presentation-service/v2/contacts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"gateway",
+								"api",
+								"contact-presentation-service",
+								"v2",
+								"contacts"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": ""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 11 Mar 2017 21:57:42 GMT",
+							"name": "Date",
+							"description": ""
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": ""
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": ""
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": ""
+						},
+						{
+							"key": "X-Application-Context",
+							"value": "application, contact-presentation-service:live",
+							"name": "X-Application-Context",
+							"description": ""
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": ""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": ""
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": ""
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"hostOnly": true,
+							"httpOnly": true,
+							"domain": "192.168.11.11",
+							"path": "/",
+							"secure": false,
+							"session": false,
+							"value": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..pV8em0ckVZ2KSwSmgFqbGA.CwQzZ6S6Vd8qXiGeQ2LCCrnIvNgpH3ZCjVus349kuX8uatRM0RjExa6cKoYjAklLxpH-g8nashRxnG7FhjbY4f1KdcFj_3MoecziYUWKcZcKazxGAhCJlVTWJq3PnfMp_t54shd24e1Zc0djOJQ5d2DQO4yGt3vK9SlNVMoxZRX3VmobOpmjgRv6rxobcrWFhAEmjt6lRnRRCruu-GC_otXmEeb8-YdvtUkll-LSwFLfdKJdjQZjKCwKSlZyIYBWfmF982EaeuUSpArd-H2tyE13-5qg8ZK2I8_iCDKtf60OZ461E5Ev7qcQ4lPIL_P_1lgD0vGiZLSKtm2HVFty7DFLN-KKm7CjnosR1MS-hVNQW7QxUn2Xyx3zkRS-irtkhplTNAeA7ejwDKbtrviNvrYjALnAUcLccB7kLjVse7c0MxcPQofGCpytNqr0ghm2.73p4PnC76_8yHUbkihwqZg",
+							"key": "Authorization"
+						}
+					],
+					"body": "{\"id\":\"4769e273-b45d-41a9-a432-d7270576eec0\"}"
+				}
+			]
+		},
+		{
+			"name": "06 - Retrieve all contacts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "660c1910-f623-4a30-950b-5edd3a615278",
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}contact-presentation-service/v2/contacts",
+					"host": [
+						"{{url}}contact-presentation-service"
+					],
+					"path": [
+						"v2",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f02ba00c-a88c-41b4-91c4-7f610e481839",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e0b3f7c0-ec4f-419e-9f72-a72b3d2bfb57",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

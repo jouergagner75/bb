@@ -1,0 +1,104 @@
+# dn - distinguished name
+# dc - domain controller
+# ou - organization unit
+# cn - common name
+
+#
+# Create domain
+#
+dn: dc=backbase,dc=com
+objectClass: top
+objectClass: domain
+dc: backbase
+
+
+#
+# Create users organization unit
+#
+dn: ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+
+#
+# Create GROUPS organization unit
+#
+dn: ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+#
+# Create ROLES organization unit
+#
+dn: ou=roles,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: roles
+
+#
+# Create GROUP_ROLES organization unit
+#
+dn: ou=group_roles,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: group_roles
+
+
+###############################################
+##  USERS
+###############################################
+
+#
+# Create user: 'admin'
+#
+dn: uid=admin,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: admin
+cn: Admin user
+sn: administrator
+userPassword: $2a$10$N0zXsCDsQroruK2zdvu7ceTz7HL5Ca2YnZZ3Yndsvbf78OObLKt7.
+
+###############################################
+##  USERS BELONGS TO...GROUPs and ROLEs
+###############################################
+#
+# Create group: admin
+#
+dn: cn=admin,ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: admin
+description: Users in ADMIN group
+member: uid=admin,ou=users,dc=backbase,dc=com
+
+
+
+#
+# Create role: ROLE_ADMIN
+#
+dn: cn=ROLE_ADMIN,ou=roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: ROLE_ADMIN
+description: Users with role ROLE_ADMIN
+member: uid=admin,ou=users,dc=backbase,dc=com
+
+
+
+###############################################
+##  GROUP ROLES
+###############################################
+
+#
+# Create Group role: ADMIN
+#
+dn: cn=ADMIN,ou=group_roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: ADMIN
+description: Groups with role ADMIN
+member: cn=admin,ou=groups,dc=backbase,dc=com

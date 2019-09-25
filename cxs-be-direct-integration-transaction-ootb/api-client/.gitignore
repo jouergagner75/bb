@@ -1,0 +1,44 @@
+######################
+# CX6 ignored files
+######################
+
+**/*.iml
+**/*.ipr
+**/*.iws
+**/*.log
+**/.classpath
+**/.idea/
+**/.project
+**/.settings
+**/target/
+**/*.class
+**/.DS_Store
+data
+
+####################
+## Ignored in Direct Integration services
+####################
+
+**/src/main/resources/lib/**
+
+#####################
+## Linux 
+#####################
+
+.directory
+
+######################
+# DBS ignored files
+######################
+*~
+.DS_Store
+.idea
+*.iml
+target
+overlays
+node_modules
+
+
+dist
+*.war
+

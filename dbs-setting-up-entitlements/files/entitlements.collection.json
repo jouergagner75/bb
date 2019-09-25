@@ -1,0 +1,1909 @@
+{
+	"info": {
+		"_postman_id": "9a8f8d18-e009-40bd-8ed1-409e524342e8",
+		"name": "DBS Training 01 - How to setup Entitlements 2.16.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.  Create the Legal Entity Hierarchy",
+			"item": [
+				{
+					"name": "Create Bank (root)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bf8c2f2e-2dcb-45ac-9a1d-48dceb65dfd3",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"Bank_Internal_ID\", response.id);",
+									"console.log(\"creating bank le\");",
+									"",
+									"pm.test(\"response is 'Created'\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"externalId\": \"Bank\",\r\n  \"name\": \"BANK\",\r\n  \"parentExternalId\": null,\r\n  \"type\": \"BANK\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}legalentity-integration-service/v2/legalentities",
+							"host": [
+								"{{entitlementsUrl}}legalentity-integration-service"
+							],
+							"path": [
+								"v2",
+								"legalentities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create KPMG (under Bank)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "410166bf-1583-491b-bdcd-c92f4c18b36b",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"KPMG_Internal_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"externalId\": \"KPMG\",\r\n  \"name\": \"KPMG\",\r\n  \"parentExternalId\": \"Bank\",\r\n  \"type\": \"CUSTOMER\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}legalentity-integration-service/v2/legalentities",
+							"host": [
+								"{{entitlementsUrl}}legalentity-integration-service"
+							],
+							"path": [
+								"v2",
+								"legalentities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Backbase (under Bank)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3cf1251f-d970-4c3f-b2b9-7b12b72e4cd0",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"Backbase_Internal_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"externalId\": \"Backbase\",\r\n  \"name\": \"Backbase\",\r\n  \"parentExternalId\": \"Bank\",\r\n  \"type\": \"CUSTOMER\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}legalentity-integration-service/v2/legalentities",
+							"host": [
+								"{{entitlementsUrl}}legalentity-integration-service"
+							],
+							"path": [
+								"v2",
+								"legalentities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2.  Create Users",
+			"item": [
+				{
+					"name": "Create Bank User (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c82719c-0117-4850-a43b-a0f712971187",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"admin_Internal_User_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"externalId\": \"admin\",\r\n \"legalEntityExternalId\": \"Bank\",\r\n \"fullName\": \"admin\" \r\n}\r\n\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}user-integration-service/v2/users",
+							"host": [
+								"{{entitlementsUrl}}user-integration-service"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create KPMG User (Jonathan)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "419199dc-4e54-4f80-bb9b-ff0b991daa40",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"Jon_Internal_User_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"externalId\": \"Jonathan\",\r\n \"legalEntityExternalId\": \"KPMG\",\r\n \"fullName\": \"Jonathan\" \r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}user-integration-service/v2/users",
+							"host": [
+								"{{entitlementsUrl}}user-integration-service"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create KPMG User (Peter)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ca89188-6905-4dab-b172-c22bf8938208",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"Peter_Internal_User_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"externalId\": \"Peter\",\r\n \"legalEntityExternalId\": \"KPMG\",\r\n \"fullName\": \"Peter\" \r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}user-integration-service/v2/users",
+							"host": [
+								"{{entitlementsUrl}}user-integration-service"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create KPMG User (Sandra)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aaae6736-c548-4713-b8f2-39667f5daa04",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"Sandra_Internal_User_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"externalId\": \"Sandra\",\r\n \"legalEntityExternalId\": \"KPMG\",\r\n \"fullName\": \"Sandra\" \r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}user-integration-service/v2/users",
+							"host": [
+								"{{entitlementsUrl}}user-integration-service"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Backbase User (Vanessa)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82ebf04d-28e0-412d-8967-6c3196977855",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"Vanessa_Internal_User_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"externalId\": \"Vanessa\",\r\n \"legalEntityExternalId\": \"Backbase\",\r\n \"fullName\": \"Vanessa\" \r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}user-integration-service/v2/users",
+							"host": [
+								"{{entitlementsUrl}}user-integration-service"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Backbase User (Albert)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3433c49-2656-4692-aaa2-5d71b4eddfdf",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"Albert_Internal_User_ID\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"externalId\": \"Albert\",\r\n \"legalEntityExternalId\": \"Backbase\",\r\n \"fullName\": \"Albert\" \r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}user-integration-service/v2/users",
+							"host": [
+								"{{entitlementsUrl}}user-integration-service"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Update External Service Agreement Id for Bank and KPMG",
+			"item": [
+				{
+					"name": "Get master service agreement for Bank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e80c71d-f506-4f4d-832f-2c2502b185ca",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"msaIdForBank\", response.id);",
+									"setTimeout(function(){}, 2000);",
+									"",
+									"pm.test(\"response is 'OK'\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}legalentity-integration-service/v2/legalentities/Bank/serviceagreements/master",
+							"host": [
+								"{{entitlementsUrl}}legalentity-integration-service"
+							],
+							"path": [
+								"v2",
+								"legalentities",
+								"Bank",
+								"serviceagreements",
+								"master"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set external service agreement id for Bank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e159667-5a43-48ac-980a-9b5f254a228e",
+								"exec": [
+									"pm.test(\"response is 'OK'\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"externalId\": \"Bank_External\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/serviceagreements/{{msaIdForBank}}",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"serviceagreements",
+								"{{msaIdForBank}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get master service agreement for KPMG",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e80c71d-f506-4f4d-832f-2c2502b185ca",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"msaIdForKPMG\", response.id);",
+									"setTimeout(function(){}, 2000);",
+									"",
+									"pm.test(\"response is 'OK'\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}legalentity-integration-service/v2/legalentities/KPMG/serviceagreements/master",
+							"host": [
+								"{{entitlementsUrl}}legalentity-integration-service"
+							],
+							"path": [
+								"v2",
+								"legalentities",
+								"KPMG",
+								"serviceagreements",
+								"master"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set external service agreement id for KPMG",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e159667-5a43-48ac-980a-9b5f254a228e",
+								"exec": [
+									"pm.test(\"response is 'OK'\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"externalId\": \"KPMG_External\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/serviceagreements/{{msaIdForKPMG}}",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"serviceagreements",
+								"{{msaIdForKPMG}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Create Entitlements admins",
+			"item": [
+				{
+					"name": "Promote the Bank User and Jonathan as Entitlements Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c49ada9-0903-4675-b851-57c1894ae062",
+								"exec": [
+									"pm.test(\"response is 'OK'\", function () {\r",
+									"    pm.response.to.have.status(207);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"externalUserId\": \"admin\",\n        \"externalServiceAgreementId\": \"Bank_External\"\n    },\n    {\n        \"externalUserId\": \"Jonathan\",\n        \"externalServiceAgreementId\": \"KPMG_External\"\n    }\n]"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/serviceagreements/admins/add",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"serviceagreements",
+								"admins",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Create Products and arrangements",
+			"item": [
+				{
+					"name": "Create Product Catalogue with one product: Current Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4fe1b736-e91c-4708-8252-0fdff4f527b2",
+								"exec": [
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"productId1\",\r\n    \"productKindId\": \"kind1\",\r\n    \"productKindName\": \"Current Account\",\r\n    \"productTypeId\": \"1111111\",\r\n    \"productTypeName\": \"Current Account\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{productSummaryUrl}}arrangements-integration-service/v2/products",
+							"host": [
+								"{{productSummaryUrl}}arrangements-integration-service"
+							],
+							"path": [
+								"v2",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Arrangement (ACC1) for KPMG",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7a31770-43a2-4f56-8883-59773e7c2506",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"ACC1\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"A01\",\r\n\"legalEntityIds\": [\"KPMG\"],\r\n\"productId\": \"productId1\",\r\n\"name\": \"ACC1\",\r\n\"alias\": \"alias1\",\r\n\"bookedBalance\": 100.1,\r\n\"availableBalance\": 100.2,\r\n\"creditLimit\": 100.3,\r\n\"IBAN\": \"AT611904300234573201\",\r\n\"BBAN\": \"BBAN\",\r\n\"currency\": \"EUR\",\r\n\"externalTransferAllowed\": true,\r\n\"urgentTransferAllowed\": false,\r\n\"accruedInterest\": 100.00,\r\n\"number\": \"PANS\",\r\n\"principalAmount\": 100.4,\r\n\"currentInvestmentValue\": 100.5,\r\n\"BIC\": \"BIC123\",\r\n\"bankBranchCode\": \"bankBranchCode1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{productSummaryUrl}}arrangements-integration-service/v2/arrangements",
+							"host": [
+								"{{productSummaryUrl}}arrangements-integration-service"
+							],
+							"path": [
+								"v2",
+								"arrangements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Arrangement (ACC2) for KPMG",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9786caf1-58b3-4d28-a351-aad91e3de8da",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"ACC2\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"A02\",\r\n\"legalEntityIds\": [\"KPMG\"],\r\n\"productId\": \"productId1\",\r\n\"name\": \"ACC2\",\r\n\"alias\": \"alias2\",\r\n\"bookedBalance\": 100.1,\r\n\"availableBalance\": 100.2,\r\n\"creditLimit\": 100.3,\r\n\"IBAN\": \"SE4550000000058398257466\",\r\n\"BBAN\": \"BBAN\",\r\n\"currency\": \"EUR\",\r\n\"externalTransferAllowed\": true,\r\n\"urgentTransferAllowed\": false,\r\n\"accruedInterest\": 100.00,\r\n\"number\": \"PANS\",\r\n\"principalAmount\": 100.4,\r\n\"currentInvestmentValue\": 100.5,\r\n\"BIC\": \"BIC234\",\r\n\"bankBranchCode\": \"bankBranchCode1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{productSummaryUrl}}arrangements-integration-service/v2/arrangements",
+							"host": [
+								"{{productSummaryUrl}}arrangements-integration-service"
+							],
+							"path": [
+								"v2",
+								"arrangements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Arrangement (ACC3) for KPMG",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ccc7ce83-66a0-4af2-aa88-fe930b45f4c7",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"ACC3\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"A03\",\r\n\"legalEntityIds\": [\"KPMG\"],\r\n\"productId\": \"productId1\",\r\n\"name\": \"ACC3\",\r\n\"alias\": \"alias3\",\r\n\"bookedBalance\": 100.1,\r\n\"availableBalance\": 100.2,\r\n\"creditLimit\": 100.3,\r\n\"IBAN\": \"NL09ABNA0519246539\",\r\n\"BBAN\": \"BBAN\",\r\n\"currency\": \"EUR\",\r\n\"externalTransferAllowed\": true,\r\n\"urgentTransferAllowed\": false,\r\n\"accruedInterest\": 100.00,\r\n\"number\": \"PANS\",\r\n\"principalAmount\": 100.4,\r\n\"currentInvestmentValue\": 100.5,\r\n\"BIC\": \"BIC345\",\r\n\"bankBranchCode\": \"bankBranchCode1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{productSummaryUrl}}arrangements-integration-service/v2/arrangements",
+							"host": [
+								"{{productSummaryUrl}}arrangements-integration-service"
+							],
+							"path": [
+								"v2",
+								"arrangements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Arrangement (ACC4) for Backbase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e3f7946-9ada-4a76-b6e4-ac992c497080",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"ACC4\", response.id);",
+									"",
+									"pm.test(\"response is 'Created'\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"A04\",\r\n\"legalEntityIds\": [\"Backbase\"],\r\n\"productId\": \"productId1\",\r\n\"name\": \"ACC4\",\r\n\"alias\": \"alias1\",\r\n\"bookedBalance\": 100.1,\r\n\"availableBalance\": 100.2,\r\n\"creditLimit\": 100.3,\r\n\"IBAN\": \"NL04ABNA0993422399\",\r\n\"BBAN\": \"BBAN\",\r\n\"currency\": \"EUR\",\r\n\"externalTransferAllowed\": true,\r\n\"urgentTransferAllowed\": false,\r\n\"accruedInterest\": 100.00,\r\n\"number\": \"PANS\",\r\n\"principalAmount\": 100.4,\r\n\"currentInvestmentValue\": 100.5,\r\n\"BIC\": \"BIC123\",\r\n\"bankBranchCode\": \"bankBranchCode1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{productSummaryUrl}}arrangements-integration-service/v2/arrangements",
+							"host": [
+								"{{productSummaryUrl}}arrangements-integration-service"
+							],
+							"path": [
+								"v2",
+								"arrangements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Arrangement (ACC5) for Backbase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d9c0ce9a-fbca-4ac8-9b99-e500e801699b",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"ACC5\", response.id);",
+									"",
+									"pm.test(\"response is 'Created'\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"A05\",\r\n\"legalEntityIds\": [\"Backbase\"],\r\n\"productId\": \"productId1\",\r\n\"name\": \"ACC5\",\r\n\"alias\": \"alias2\",\r\n\"bookedBalance\": 100.1,\r\n\"availableBalance\": 100.2,\r\n\"creditLimit\": 100.3,\r\n\"IBAN\": \"NL22RABO0317358827\",\r\n\"BBAN\": \"BBAN\",\r\n\"currency\": \"EUR\",\r\n\"externalTransferAllowed\": true,\r\n\"urgentTransferAllowed\": false,\r\n\"accruedInterest\": 100.00,\r\n\"number\": \"PANS\",\r\n\"principalAmount\": 100.4,\r\n\"currentInvestmentValue\": 100.5,\r\n\"BIC\": \"BIC234\",\r\n\"bankBranchCode\": \"bankBranchCode1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{productSummaryUrl}}arrangements-integration-service/v2/arrangements",
+							"host": [
+								"{{productSummaryUrl}}arrangements-integration-service"
+							],
+							"path": [
+								"v2",
+								"arrangements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Arrangement (ACC6) for Backbase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e913c55-9f17-4ad5-a34c-2a26fd591033",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"ACC6\", response.id);",
+									"",
+									"pm.test(\"response is 'Created'\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"A06\",\r\n\"legalEntityIds\": [\"Backbase\"],\r\n\"productId\": \"productId1\",\r\n\"name\": \"ACC6\",\r\n\"alias\": \"alias3\",\r\n\"bookedBalance\": 100.1,\r\n\"availableBalance\": 100.2,\r\n\"creditLimit\": 100.3,\r\n\"IBAN\": \"NL66RABO0169699882\",\r\n\"BBAN\": \"BBAN\",\r\n\"currency\": \"EUR\",\r\n\"externalTransferAllowed\": true,\r\n\"urgentTransferAllowed\": false,\r\n\"accruedInterest\": 100.00,\r\n\"number\": \"PANS\",\r\n\"principalAmount\": 100.4,\r\n\"currentInvestmentValue\": 100.5,\r\n\"BIC\": \"BIC345\",\r\n\"bankBranchCode\": \"bankBranchCode1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{productSummaryUrl}}arrangements-integration-service/v2/arrangements",
+							"host": [
+								"{{productSummaryUrl}}arrangements-integration-service"
+							],
+							"path": [
+								"v2",
+								"arrangements"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Create Product Groups (Data Group)",
+			"item": [
+				{
+					"name": "Create Product Group for MSA of KPMG (All Accounts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "188c2612-5121-4411-bc3b-74451066b751",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"DG_KPMG_All_Accounts\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"All Accounts\",\r\n\t\"description\": \"All Accounts\",\r\n\t\"externalServiceAgreementId\": \"KPMG_External\",\r\n\t\"type\": \"ARRANGEMENTS\",\r\n\t\"items\": [\r\n\t\t\"{{ACC1}}\",\r\n\t\t\"{{ACC2}}\",\r\n\t\t\"{{ACC3}}\"\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/data-groups",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"data-groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. Create Job Profile (Function Group)",
+			"item": [
+				{
+					"name": "Retrieve ID for available business functions in the system",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e84258ac-fcf8-40c6-8045-71e363eacd43",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"var manageUsersId = response.filter(f => f.name === \"Manage Users\")[0].functionId;",
+									"var manageLEId = response.filter(f => f.name === \"Manage Legal Entities\")[0].functionId;",
+									"var assignPermissionsId = response.filter(f => f.name === \"Assign Permissions\")[0].functionId;",
+									"var manageFunctionGroups = response.filter(f => f.name === \"Manage Function Groups\")[0].functionId;",
+									"var manageDataGroups = response.filter(f => f.name === \"Manage Data Groups\")[0].functionId;",
+									"",
+									"var sepaCTId = response.filter(f => f.name === \"SEPA CT\")[0].functionId;",
+									"",
+									"var productSummaryID = response.filter(f => f.name === \"Product Summary\")[0].functionId;",
+									"var transactionsId = response.filter(f => f.name === \"Transactions\")[0].functionId;",
+									"var contactsId = response.filter(f => f.name === \"Contacts\")[0].functionId;",
+									"",
+									"postman.setEnvironmentVariable(\"FG_ID_MANAGE_USERS\", manageUsersId);",
+									"postman.setEnvironmentVariable(\"FG_ID_MANAGE_LE\", manageLEId);",
+									"postman.setEnvironmentVariable(\"FG_ID_ASSIGN_PERMISSIONS\", assignPermissionsId);",
+									"postman.setEnvironmentVariable(\"FG_ID_MANAGE_FUNCTION_GROUPS\", manageFunctionGroups);",
+									"postman.setEnvironmentVariable(\"FG_ID_MANAGE_DATA_GROUPS\", manageDataGroups);",
+									"",
+									"",
+									"postman.setEnvironmentVariable(\"FG_ID_PRODUCT_SUMMARY\", productSummaryID);",
+									"postman.setEnvironmentVariable(\"FG_ID_MANAGE_TRANSACTIONS\", transactionsId);",
+									"postman.setEnvironmentVariable(\"FG_ID_CONTACTS\", contactsId);",
+									"postman.setEnvironmentVariable(\"SEPA_CT_ID\", sepaCTId);",
+									"",
+									"pm.test(\"response is 'OK'\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/config/functions",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"config",
+								"functions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Job Profile for MSA of KPMG (Viewer of Product Summary and Transaction)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b4b39bc3-ecbe-4730-9916-fb0e568d67b4",
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"FG_KPMG_View_PS_Transactions\", response.id);\r",
+									"\r",
+									"pm.test(\"response is 'Created'\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Viewer of Product Summary and Transactions\",\r\n\t\"description\": \"This profile will control viewing of Product Summary and Transactions\",\r\n\t\"externalServiceAgreementId\": \"KPMG_External\",\r\n\t\"permissions\": [\r\n\t\t{\r\n\t\t\t\"functionId\": \"{{FG_ID_PRODUCT_SUMMARY}}\",\r\n\t\t\t\"assignedPrivileges\": [{\r\n\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t}]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"functionId\": \"{{FG_ID_MANAGE_TRANSACTIONS}}\",\r\n\t\t\t\"assignedPrivileges\": [{\r\n\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t}]\r\n\t\t}\r\n\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/function-groups",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"function-groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "8. Assign and Test Permissions to Peter (KPMG Service Agreement)",
+			"item": [
+				{
+					"name": "Assign Permission to Peter to (View All Accounts on PS and Transactions)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "baaea578-76c6-406a-b352-c77f42e36aa6",
+								"exec": [
+									"pm.test(\"response is 'Multi-Status'\", function () {\r",
+									"    pm.response.to.have.status(207);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[  \r\n   {  \r\n      \"externalServiceAgreementId\":\"KPMG_External\",\r\n      \"externalUserId\":\"Peter\",\r\n      \"functionGroupDataGroups\":[  \r\n         {  \r\n            \"functionGroupIdentifier\":{  \r\n               \"idIdentifier\":\"{{FG_KPMG_View_PS_Transactions}}\"\r\n            },\r\n            \"dataGroupIdentifiers\":[  \r\n               {  \r\n                  \"idIdentifier\":\"{{DG_KPMG_All_Accounts}}\"\r\n               }\r\n            ]\r\n         }\r\n      ]\r\n   }\r\n]"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/users/permissions/user-permissions",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"users",
+								"permissions",
+								"user-permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Peter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef98a6b6-3c54-4409-89c2-b8857f81896d",
+								"exec": [
+									"var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+									"console.log(xsrfCookie.value);",
+									"postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);",
+									"",
+									"pm.test(\"response is 'OK'\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Peter",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Peter",
+									"type": "text"
+								},
+								{
+									"key": "submit",
+									"value": "Login",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set context for Peter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "795d5f8e-aad8-42a8-87a6-bbf6ca56f77c",
+								"exec": [
+									"pm.test(\"response is 'No Content'\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"serviceAgreementId\": \"{{msaIdForKPMG}}\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext?_csrf={{xsrf-token}}",
+							"host": [
+								"{{url}}accessgroup-presentation-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"usercontext"
+							],
+							"query": [
+								{
+									"key": "_csrf",
+									"value": "{{xsrf-token}}"
+								}
+							]
+						},
+						"description": "Set User context for logged in User.\nService agreement for context = Master Service Agreement of the legal entity where Jon belongs.\nLegal Entity for context = null for now."
+					},
+					"response": []
+				},
+				{
+					"name": "Check privileges for Peter: List of Arrangements that he can see",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ab17950-2ddd-4ed4-a7cb-7c53f6c61c6c",
+								"exec": [
+									"pm.test(\"response is 'OK'\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-privileges/arrangements?functionName=Product Summary&resourceName=Product Summary",
+							"host": [
+								"{{url}}accessgroup-presentation-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"users",
+								"user-privileges",
+								"arrangements"
+							],
+							"query": [
+								{
+									"key": "functionName",
+									"value": "Product Summary"
+								},
+								{
+									"key": "resourceName",
+									"value": "Product Summary"
+								}
+							]
+						},
+						"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_presentation_service_v2_accessgroups_users_user_privileges_arrangements_get"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1db5988a-1e92-4598-98a1-2e38c35ddb14",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "252d3e7d-3b42-411f-b52c-68b679b698da",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "9. Manage Custom Service Agreement",
+			"item": [
+				{
+					"name": "Create Service Agreement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7352f21d-5f58-4c7e-b67a-b862aeeafc68",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"Service_Agreement_KPMG_Backbase_ID\", response.id);",
+									"",
+									"pm.test(\"response is 'Created'\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"externalId\": \"KPMG_Backbase\",\n  \"name\": \"KPMG and Backbase\",\n  \"description\": \"Agreement between KPMG and Backbase\",\n  \"status\": \"ENABLED\",\n\t\"participants\": [\n\t{\n\t\t\"externalId\": \"KPMG\",\n\t\t\"admins\": [\n\t\t\"Jonathan\"\n\t\t],\n\t\t\"users\": [\n\t\t\"Peter\"\n\t\t],\n\t\t\"sharingUsers\":true,\n\t\t\"sharingAccounts\":false\n\t},\n\t{\n\t\t\"externalId\": \"Backbase\",\n\t\t\"admins\": [\n\t\t\"Vanessa\"\n\t\t],\n\t\t\"sharingUsers\":false,\n\t\t\"sharingAccounts\":true\n\t}\n]\n}"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/serviceagreements",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"serviceagreements"
+							]
+						},
+						"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_integration_service_v2_accessgroups_serviceagreements_post"
+					},
+					"response": []
+				},
+				{
+					"name": "Add an extra user (Sandra) to KPMG/Backbase Service Agreement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d69c9bb-d549-444c-a3f5-92ed4daacb6d",
+								"exec": [
+									"pm.test(\"response is 'Multi-Status'\", function () {\r",
+									"    pm.response.to.have.status(207);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"externalUserId\": \"Sandra\",\n    \"externalServiceAgreementId\": \"KPMG_Backbase\"\n  }\n]"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/serviceagreements/users/add",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"serviceagreements",
+								"users",
+								"add"
+							]
+						},
+						"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_integration_service_v2_accessgroups_serviceagreements_post"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve KPMG/Backbase Service Agreement details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7d7cf2e-7858-402a-bc10-6287579b71d1",
+								"exec": [
+									"pm.test(\"response is 'OK'\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/serviceagreements/KPMG_Backbase",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"serviceagreements",
+								"KPMG_Backbase"
+							]
+						},
+						"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_integration_service_v2"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product Group for SA - KPMG/Backbase (Salaries)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07676224-a8b1-418d-bc22-b26a9606537b",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"DG_KPMG_Backbase_Salaries\", response.id);",
+									"",
+									"pm.test(\"response is 'Created'\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Salaries\",\r\n\t\"description\": \"Simple account group\",\r\n\t\"externalServiceAgreementId\": \"KPMG_Backbase\",\r\n\t\"type\": \"ARRANGEMENTS\",\r\n\t\"items\": [\r\n\t\t\"{{ACC4}}\",\r\n\t\t\"{{ACC5}}\",\r\n\t\t\"{{ACC6}}\"\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/data-groups",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"data-groups"
+							]
+						},
+						"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_integration_service_v2_accessgroups_data_groups_post"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Job Profile for SA - KPMG/Backbase (Finance Officer)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8a6130b-14b5-4cba-96a1-119f58602c0b",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"FG_KPMG_Backbase_Finance_Officer\", response.id);",
+									"",
+									"pm.test(\"response is 'Created'\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Finance Officer\",\r\n\t\"description\": \"This profile will control viewing of Product Summary\",\r\n\t\"externalServiceAgreementId\": \"KPMG_Backbase\",\r\n\t\"permissions\": [\r\n\t\t{\r\n\t\t\t\"functionId\": \"{{FG_ID_PRODUCT_SUMMARY}}\",\r\n\t\t\t\"assignedPrivileges\": [{\r\n\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t}]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"functionId\": \"{{FG_ID_MANAGE_TRANSACTIONS}}\",\r\n\t\t\t\"assignedPrivileges\": [{\r\n\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t}]\r\n\t\t},\r\n\t\t\t\t{\r\n\t\t\t\"functionId\": \"{{SEPA_CT_ID}}\",\r\n\t\t\t\"assignedPrivileges\": [\r\n\t\t\t\t{\r\n\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"privilege\": \"edit\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"privilege\": \"delete\"\r\n\t\t\t}]\r\n\t\t}\r\n\t]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/function-groups",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"function-groups"
+							]
+						},
+						"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_integration_service_v2_accessgroups_function_groups_post"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "10. Assign and Test Permissions to User (Custom Service Agreement)",
+			"item": [
+				{
+					"name": "Assign permissions to Sandra in SA between KPMG and Backbase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e45c4766-2b49-4b49-aa6f-a5c3e9d4779a",
+								"exec": [
+									"pm.test(\"response is 'Multi-STatus'\", function () {\r",
+									"    pm.response.to.have.status(207);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{  \r\n\r\n\"externalServiceAgreementId\": \"KPMG_Backbase\",\r\n    \"externalUserId\": \"Sandra\",\r\n    \"functionGroupDataGroups\": [\r\n      {\r\n        \"functionGroupIdentifier\": {\r\n          \"idIdentifier\": \"{{FG_KPMG_Backbase_Finance_Officer}}\"\r\n        },\r\n        \"dataGroupIdentifiers\": [\r\n          {\r\n             \"idIdentifier\": \"{{DG_KPMG_Backbase_Salaries}}\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }]\r\n  \r\n"
+						},
+						"url": {
+							"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/users/permissions/user-permissions",
+							"host": [
+								"{{entitlementsUrl}}accessgroup-integration-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"users",
+								"permissions",
+								"user-permissions"
+							]
+						},
+						"description": "http://docs.backbase.com/extranet/technical-docs/endpoints/v2/dbs_for_developers.html#accessgroup_integration_service_v2_accessgroups_users_permissions_post"
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Sandra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "86fb62d8-c7a0-450c-9e1b-3239141c7f6d",
+								"exec": [
+									"var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+									"console.log(xsrfCookie.value);",
+									"postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);",
+									"",
+									"pm.test(\"response is 'OK'\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Sandra",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Sandra",
+									"type": "text"
+								},
+								{
+									"key": "submit",
+									"value": "Login",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set context for Sandra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "80d840a5-d8f1-4fc2-b772-e0d6286d447b",
+								"exec": [
+									"var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\");",
+									"postman.setEnvironmentVariable(\"xsrf-token\", xsrfCookie.value);",
+									"",
+									"pm.test(\"response is 'No Content'\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"serviceAgreementId\": \"{{Service_Agreement_KPMG_Backbase_ID}}\",\n\t\"legalEntityId\": \"{{KPMG_Internal_ID}}\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext?_csrf={{xsrf-token}}",
+							"host": [
+								"{{url}}accessgroup-presentation-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"usercontext"
+							],
+							"query": [
+								{
+									"key": "_csrf",
+									"value": "{{xsrf-token}}"
+								}
+							]
+						},
+						"description": "Set User context for logged in User.\nService agreement for context = Master Service Agreement of the legal entity where Jon belongs.\nLegal Entity for context = null for now."
+					},
+					"response": []
+				},
+				{
+					"name": "Check privileges available for Sandra for Product Summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-privileges/arrangements?functionName=Product Summary&resourceName=Product Summary",
+							"host": [
+								"{{url}}accessgroup-presentation-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"users",
+								"user-privileges",
+								"arrangements"
+							],
+							"query": [
+								{
+									"key": "functionName",
+									"value": "Product Summary"
+								},
+								{
+									"key": "resourceName",
+									"value": "Product Summary"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check privilege for Sandra for viewing Product Summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-privileges/arrangements?functionName=Product Summary&resourceName=Product Summary&privileges=view",
+							"host": [
+								"{{url}}accessgroup-presentation-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"users",
+								"user-privileges",
+								"arrangements"
+							],
+							"query": [
+								{
+									"key": "functionName",
+									"value": "Product Summary"
+								},
+								{
+									"key": "resourceName",
+									"value": "Product Summary"
+								},
+								{
+									"key": "privileges",
+									"value": "view"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check privileges for Sandra: List of Arrangements that she can see",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/users/user-privileges/arrangements?functionName=SEPA CT&resourceName=Payments",
+							"host": [
+								"{{url}}accessgroup-presentation-service"
+							],
+							"path": [
+								"v2",
+								"accessgroups",
+								"users",
+								"user-privileges",
+								"arrangements"
+							],
+							"query": [
+								{
+									"key": "functionName",
+									"value": "SEPA CT"
+								},
+								{
+									"key": "resourceName",
+									"value": "Payments"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

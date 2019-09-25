@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/cxs-be-direct-integration-atm-location/pom.xml" />
+        <option value="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/pom.xml" />
+        <option value="$PROJECT_DIR$/cxs-be-security-auth-extension-points/pom.xml" />
+        <option value="$PROJECT_DIR$/cxs-be-security-custom-auth-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/cxs-be-security-multiple-auth-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/cxs-be-security-overriding-controller/pom.xml" />
+        <option value="$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/pom.xml" />
+        <option value="$PROJECT_DIR$/dbs-custom-integration/pom.xml" />
+        <option value="$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/pom.xml" />
+        <option value="$PROJECT_DIR$/dbs-scheduled-custom-integration/pom.xml" />
+      </list>
+    </option>
+  </component>
+</project>

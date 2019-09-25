@@ -1,0 +1,431 @@
+# dn - distinguished name
+# dc - domain controller
+# ou - organization unit
+# cn - common name
+
+#
+# Create domain
+#
+dn: dc=backbase,dc=com
+objectClass: top
+objectClass: domain
+dc: backbase
+
+
+#
+# Create users organization unit
+#
+dn: ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+
+#
+# Create GROUPS organization unit
+#
+dn: ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+#
+# Create ROLES organization unit
+#
+dn: ou=roles,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: roles
+
+#
+# Create GROUP_ROLES organization unit
+#
+dn: ou=group_roles,dc=backbase,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: group_roles
+
+
+###############################################
+##  USERS
+###############################################
+
+#
+# Create user: 'admin'
+#
+dn: uid=admin,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: admin
+cn: Admin user
+sn: administrator
+userPassword: {CRYPT}sa1aY64JOY94w
+
+#
+# Create user: 'admin2'
+#
+dn: uid=admin2,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: admin2
+cn: Admin user
+sn: administrator
+userPassword: {CRYPT}sa1aY64JOY94w
+
+#
+# Create user: 'manager'
+#
+dn: uid=manager,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Manager
+sn: Manager user
+uid: manager
+userPassword: manager
+
+#
+# Create user: 'manager2'
+#
+dn: uid=manager2,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Manager
+sn: Manager user
+uid: manager2
+userPassword: manager
+
+
+#
+# Create user: 'publisher'
+#
+dn: uid=publisher,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Publisher
+sn: Publisher user
+uid: publisher
+userPassword: publisher
+
+#
+# Create user: 'designer'
+#
+dn: uid=designer,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Designer
+sn: Designer user
+uid: designer
+userPassword: designer
+
+#
+# Create user: 'user'
+#
+dn: uid=user,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: user
+userPassword: user
+
+
+#
+# Create user: 'Jonathan'
+#
+dn: uid=Jonathan,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: Jonathan
+userPassword: Jonathan
+
+#
+# Create user: 'Peter'
+#
+dn: uid=Peter,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: Peter
+userPassword: Peter
+
+#
+# Create user: 'Sandra'
+#
+dn: uid=Sandra,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: Sandra
+userPassword: Sandra
+
+#
+# Create user: 'Vanessa'
+#
+dn: uid=Vanessa,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: Vanessa
+userPassword: Vanessa
+
+#
+# Create user: 'Albert'
+#
+dn: uid=Albert,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: Albert
+userPassword: Albert
+
+#
+# Create user: 'Eric'
+#
+dn: uid=eric,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Manager
+sn: Manager user
+uid: eric
+userPassword: password
+
+#
+# Create user: 'Thomas'
+#
+dn: uid=thomas,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: thomas
+userPassword: password
+
+#
+# Create user: 'Sara'
+#
+dn: uid=sara,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: sara
+userPassword: password
+
+#
+# Create user: 'Liz'
+#
+dn: uid=liz,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: liz
+userPassword: password
+
+#
+# Create user: 'Jim'
+#
+dn: uid=jim,ou=users,dc=backbase,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User
+sn: User
+uid: jim
+userPassword: password
+
+
+###############################################
+##  USERS BELONGS TO...GROUPs and ROLEs
+###############################################
+#
+# Create group: admin
+#
+dn: cn=admin,ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: admin
+description: Users in ADMIN group
+member: uid=admin,ou=users,dc=backbase,dc=com
+member: uid=admin2,ou=users,dc=backbase,dc=com
+
+#
+# Create group: manager
+#
+dn: cn=manager,ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: manager
+description: Users in MANAGER group
+member: uid=manager,ou=users,dc=backbase,dc=com
+member: uid=manager2,ou=users,dc=backbase,dc=com
+member: uid=eric,ou=users,dc=backbase,dc=com
+
+#
+# Create group: master page designer
+#
+dn: cn=master page designer,ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: master page designer
+description: Users in MASTER PAGE DESIGNER group
+member: uid=publisher,ou=users,dc=backbase,dc=com
+member: uid=designer,ou=users,dc=backbase,dc=com
+
+#
+# Create group: designers
+#
+dn: cn=designers,ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: designers
+description: Users in DESIGNERS group
+member: uid=designer,ou=users,dc=backbase,dc=com
+
+#
+# Create group: user
+#
+dn: cn=user,ou=groups,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: user
+description: Users in user group
+member: uid=user,ou=users,dc=backbase,dc=com
+member: uid=Jonathan,ou=users,dc=backbase,dc=com
+member: uid=Peter,ou=users,dc=backbase,dc=com
+member: uid=Sandra,ou=users,dc=backbase,dc=com
+member: uid=Vanessa,ou=users,dc=backbase,dc=com
+member: uid=Albert,ou=users,dc=backbase,dc=com
+member: uid=thomas,ou=users,dc=backbase,dc=com
+member: uid=sara,ou=users,dc=backbase,dc=com
+member: uid=liz,ou=users,dc=backbase,dc=com
+member: uid=jim,ou=users,dc=backbase,dc=com
+
+
+#
+# Create role: ROLE_ADMIN
+#
+dn: cn=ROLE_ADMIN,ou=roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: ROLE_ADMIN
+description: Users with role ROLE_ADMIN
+member: uid=admin,ou=users,dc=backbase,dc=com
+member: uid=admin2,ou=users,dc=backbase,dc=com
+
+#
+# Create role: ROLE_ACTUATOR
+#
+dn: cn=ROLE_ACTUATOR,ou=roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: ROLE_ACTUATOR
+description: Users with role ROLE_ACTUATOR
+member: uid=admin,ou=users,dc=backbase,dc=com
+
+
+#
+# Create role: ROLE_MANAGER
+#
+dn: cn=ROLE_MANAGER,ou=roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: ROLE_MANAGER
+description: Users with role ROLE_MANAGER
+member: uid=manager,ou=users,dc=backbase,dc=com
+member: uid=publisher,ou=users,dc=backbase,dc=com
+member: uid=designer,ou=users,dc=backbase,dc=com
+
+#
+# Create role: ROLE_USER
+#
+dn: cn=ROLE_USER,ou=roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: ROLE_USER
+description: Users with role ROLE_USER
+member: uid=user,ou=users,dc=backbase,dc=com
+member: uid=Jonathan,ou=users,dc=backbase,dc=com
+member: uid=Peter,ou=users,dc=backbase,dc=com
+member: uid=Sandra,ou=users,dc=backbase,dc=com
+member: uid=Vanessa,ou=users,dc=backbase,dc=com
+member: uid=Albert,ou=users,dc=backbase,dc=com
+member: uid=thomas,ou=users,dc=backbase,dc=com
+member: uid=sara,ou=users,dc=backbase,dc=com
+member: uid=liz,ou=users,dc=backbase,dc=com
+member: uid=jim,ou=users,dc=backbase,dc=com
+
+
+###############################################
+##  GROUP ROLES
+###############################################
+
+#
+# Create Group role: ADMIN
+#
+dn: cn=ADMIN,ou=group_roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: ADMIN
+description: Groups with role ADMIN
+member: cn=admin,ou=groups,dc=backbase,dc=com
+
+#
+# Create Group role: MANAGER
+#
+dn: cn=MANAGER,ou=group_roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: MANAGER
+description: Groups with role MANAGER
+member: cn=manager,ou=groups,dc=backbase,dc=com
+member: cn=master page designer,ou=groups,dc=backbase,dc=com
+member: cn=designers,ou=groups,dc=backbase,dc=com
+
+#
+# Create Group role: USER
+#
+dn: cn=USER,ou=group_roles,dc=backbase,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: USER
+description: Groups with role USER
+member: cn=user,ou=groups,dc=backbase,dc=com

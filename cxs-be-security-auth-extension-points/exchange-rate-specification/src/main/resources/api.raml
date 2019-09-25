@@ -1,0 +1,67 @@
+#%RAML 1.0
+---
+#===============================================================
+#  References:
+#    - RAML Specification - https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md
+
+title: Backbase Exchange Rate Client API
+version: v1
+baseUri: "/{version}"
+mediaType:  application/json
+protocols: [ HTTP, HTTPS ]
+types:
+  ExchangeRatesGet:
+    type: !include schemas/exchange-rates-get.json
+  CurrenciesGet:
+    type: !include schemas/currencies-get.json
+uses:
+  generatedTraits: lib/traits/traits.raml
+
+/exchange:
+  /currencies:
+    displayName: Currencies
+    description: Retrieve all available currencies to get the exchange rate
+    get:
+      is: [generatedTraits.BadRequestError, generatedTraits.ForbiddenError, generatedTraits.InternalServerError]
+      description: "Retrieve all available currencies to get the exchange rate"
+      responses:
+        200:
+          body:
+            application/json:
+              type: CurrenciesGet
+              example: !include examples/currencies-get.json
+  /rates:
+    displayName: Exchange Rates
+    description: Fetch latest exchange rate of one currency pair.
+    get:
+      is: [generatedTraits.BadRequestError, generatedTraits.ForbiddenError, generatedTraits.InternalServerError]
+      description: "Fetch latest exchange rate of one currency pair."
+      queryParameters:
+        source:
+          description: Source(send) currency code
+          type: string
+          required: true
+          example: EUR
+          default: "EUR"
+        target:
+          description: Target(receive) currency code
+          type: string
+          required: true
+          example: USD
+          default: "USD"
+        from:
+          displayName: from
+          type: date-only
+          description: Period start date/time to get exchange rate
+          required: false
+        to:
+          displayName: to
+          type: date-only
+          description: Period end date/time to get exchange rate
+          required: false
+      responses:
+        200:
+          body:
+            application/json:
+              type: ExchangeRatesGet
+              example: !include examples/exchange-rates-get.json

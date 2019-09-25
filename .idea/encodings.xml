@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/cxs-be-direct-integration-atm-location" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-direct-integration-atm-location/atm-location-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/mambu-clients-client-spec" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/api-client/mambu-deposit-accounts-client-spec" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb/transactions-direct-integration-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-auth-extension-points" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-auth-extension-points/auth-service-extension-points" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-auth-extension-points/exchange-rate-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-custom-auth-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-multiple-auth-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-overriding-controller" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers/upstream-downstream-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration/exchange-rate-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dbs-scheduled-custom-integration" charset="UTF-8" />
+  </component>
+</project>

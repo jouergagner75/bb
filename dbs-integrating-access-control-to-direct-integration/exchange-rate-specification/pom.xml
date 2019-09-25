@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>backbase-spec-starter-parent</artifactId>
+        <groupId>com.backbase.buildingblocks</groupId>
+        <version>8.2.2</version>
+    </parent>
+
+    <groupId>com.backbase.training</groupId>
+    <artifactId>exchange-rate-specification</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>Backbase :: Integrating Access Control to a Direct Integration Service :: Exchange Rate Spec</name>
+
+    <properties>
+        <codegen.serviceName>exchange.rate</codegen.serviceName>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Uncomment this if your API is creating Commands and Events
+            <plugin>
+                <groupId>com.backbase.codegen</groupId>
+                <artifactId>jsonschema-events-maven-plugin</artifactId>
+            </plugin>
+             -->
+            <plugin>
+                <groupId>com.backbase.codegen</groupId>
+                <artifactId>raml-api-maven-plugin-1-0</artifactId>
+                <!-- These options change the default configuration managed in backbase-spec-starter-parent-->
+                <configuration>
+                    <inputFile>src/main/resources/api.raml</inputFile>
+                    <outputFile>target/generated-sources</outputFile>
+                    <packageName>${codegen.serviceName}</packageName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-direct-integration-atm-location" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-direct-integration-exchange-rate" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-direct-integration-transaction-ootb" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-security-auth-extension-points" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-security-custom-auth-provider" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-security-custom-auth-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-security-multiple-auth-provider" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-security-overriding-controller" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-security-upstream-downstream-providers" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-be-ssdk" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cxs-wa3-setup" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-custom-integration" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-extending-behavior-extensible-route" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-extending-behavior-simple-route" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-extending-behavior-simple-route-model-extension" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-extending-data-model" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-integrating-access-control-to-direct-integration" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-rest-data-ingestion" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-scheduled-custom-integration" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-setting-up-entitlements" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dbs-setting-up-existing-capabilities" vcs="Git" />
+  </component>
+</project>

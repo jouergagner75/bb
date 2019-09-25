@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "83b3372f-5615-4ce2-b5a7-352d064fa12f",
+		"name": "DBS Training 04 - Extending Payments Behavior 2.16.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 - Create Job Profile to Manage SEPA Payments for Amsterdam KPMG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0631ffbb-bbd8-4448-bd6b-5cca52dfc27e",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"FG_ID_MANAGE_SEPA_PAYMENTS_AMSTERDAM\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Manage SEPA CT Payments for Amsterdam\",\t\r\n  \"description\": \"This job profile will enable users to view, create and edit SEPA payments for Amsterdam\",\r\n  \"externalServiceAgreementId\": \"KPMG_External\",\r\n  \"permissions\": [\r\n\t\t{\r\n\t\t\t\"functionId\": \"1002\",\r\n\t\t\t\"assignedPrivileges\": [{\r\n\t\t\t\t\t\"privilege\": \"view\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"privilege\": \"create\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"privilege\": \"edit\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/function-groups",
+					"host": [
+						"{{entitlementsUrl}}accessgroup-integration-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"function-groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02 - (Don't Execute this step, just reminder) Product Group Already Created",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"All Accounts\",\r\n\t\"description\": \"All Accounts\",\r\n\t\"externalServiceAgreementId\": \"KPMG_External\",\r\n\t\"type\": \"ARRANGEMENTS\",\r\n\t\"items\": [\r\n\t\t\"{{ACC1}}\",\r\n\t\t\"{{ACC2}}\",\r\n\t\t\"{{ACC3}}\"\r\n\t]\r\n}"
+				},
+				"url": {
+					"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/data",
+					"host": [
+						"{{entitlementsUrl}}accessgroup-integration-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - Assign Permission to Peter to Manage SEPA Payments for Amsterdam",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n      \"externalServiceAgreementId\":\"KPMG_External\",\n      \"externalUserId\":\"Peter\",\n      \"functionGroupDataGroups\":[\n         {  \n            \"functionGroupIdentifier\":{  \n               \"idIdentifier\":\"{{FG_KPMG_View_PS_Transactions}}\"\n            },\n            \"dataGroupIdentifiers\":[  \n               {  \n                  \"idIdentifier\":\"{{DG_KPMG_All_Accounts}}\"\n               }\n            ]\n         },\n         {\n            \"functionGroupIdentifier\":{\n               \"idIdentifier\":\"{{FG_KPMG_View_Currencies}}\"\n            },\n            \"dataGroupIdentifiers\":[\n            ]\n         },\n         {\n            \"functionGroupIdentifier\":{\n               \"idIdentifier\":\"{{FG_ID_MANAGE_SEPA_PAYMENTS_AMSTERDAM}}\"\n            },\n            \"dataGroupIdentifiers\":[\n               {\n                  \"idIdentifier\":\"{{DG_KPMG_All_Accounts}}\"\n               }\n            ]\n         }\n      ]\n   }\n]"
+				},
+				"url": {
+					"raw": "{{entitlementsUrl}}accessgroup-integration-service/v2/accessgroups/users/permissions/user-permissions",
+					"host": [
+						"{{entitlementsUrl}}accessgroup-integration-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"users",
+						"permissions",
+						"user-permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04 - Auth as Peter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic Og=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Peter",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Peter",
+							"type": "text"
+						},
+						{
+							"key": "submit",
+							"value": "Login",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}auth/login",
+					"host": [
+						"{{url}}auth"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Authenticate"
+			},
+			"response": []
+		},
+		{
+			"name": "Set context for Peter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serviceAgreementId\": \"{{msaIdForKPMG}}\",\n\t\"legalEntityId\": null\n}"
+				},
+				"url": {
+					"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext?_csrf={{csrfTokenValue}}",
+					"host": [
+						"{{url}}accessgroup-presentation-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"usercontext"
+					],
+					"query": [
+						{
+							"key": "_csrf",
+							"value": "{{csrfTokenValue}}"
+						}
+					]
+				},
+				"description": "Set User context for logged in User.\nService agreement for context = Master Service Agreement of the legal entity where Jon belongs.\nLegal Entity for context = null for now."
+			},
+			"response": []
+		},
+		{
+			"name": "05 - Search for the user's Service Agreement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"var serviceAgreementId = JSON.parse(responseBody)[0].id;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);",
+							"postman.setEnvironmentVariable(\"serviceAgreementId\", serviceAgreementId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}accessgroup-presentation-service/v2/accessgroups/usercontext/serviceagreements",
+					"host": [
+						"{{url}}accessgroup-presentation-service"
+					],
+					"path": [
+						"v2",
+						"accessgroups",
+						"usercontext",
+						"serviceagreements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06 - Get Payments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}payment-order-presentation-service/v2/payment-orders?size=100",
+					"host": [
+						"{{url}}payment-order-presentation-service"
+					],
+					"path": [
+						"v2",
+						"payment-orders"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "07 - Post Payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fdd14138-7991-4093-8957-7c1e4982e978",
+						"exec": [
+							"var csrfTokenValue = postman.getResponseCookie(\"XSRF-TOKEN\").value;",
+							"postman.setEnvironmentVariable(\"csrfTokenValue\", csrfTokenValue);",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"paymentOrderId\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{csrfTokenValue}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"debtorAccount\": {\n    \"identification\": {\n      \"identification\": \"{{ACC1}}\",\n      \"schemeName\": \"ID\"\n    }\n  },\n  \"batchBooking\": true,\n  \"instructionPriority\": \"HIGH\",\n  \"requestedExecutionDate\": \"2019-01-01\",\n  \"paymentMode\": \"RECURRING\",\n  \"schedule\": {\n    \"transferFrequency\": \"MONTHLY\",\n    \"on\": 1,\n    \"startDate\": \"2019-01-01\",\n    \"every\": 1\n  },\n  \"creditTransferTransactionInformation\": [\n    {\n      \"instructedAmount\": {\n        \"amount\": \"100.00\",\n        \"currencyCode\": \"EUR\"\n      },\n      \"creditor\": {\n        \"name\": \"Dagobert Duck\",\n        \"postalAddress\": {\n          \"addressLine1\": \"Some other street\",\n          \"addressLine2\": \"99\",\n          \"postCode\": \"1100 ZZ\",\n          \"town\": \"Amsterdam\",\n          \"country\": \"NL\"\n        }\n      },\n      \"creditorAccount\": {\n        \"identification\": {\n          \"identification\": \"SE4550000000058398257466\",\n          \"schemeName\": \"IBAN\"\n        }\n      },\n      \"remittanceInformation\": \"Salary\",\n      \"endToEndIdentification\": \"5e1a3da132cc\"\n    }\n  ]\n}\n"
+				},
+				"url": {
+					"raw": "{{url}}payment-order-presentation-service/v2/payment-orders",
+					"host": [
+						"{{url}}payment-order-presentation-service"
+					],
+					"path": [
+						"v2",
+						"payment-orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
